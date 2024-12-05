@@ -89,7 +89,7 @@ export default function CadMedico() {
             required: true,
         },
         {
-            name: "bairrp",
+            name: "bairro",
             label: "Bairro",
             type: "text",
             placeholder: "Digite o bairro",
