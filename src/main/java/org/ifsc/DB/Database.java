@@ -18,7 +18,7 @@ public class Database {
 
     public static void openConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+            String url = "jdbc:mysql://100.124.136.16:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "bru!@#";
 
