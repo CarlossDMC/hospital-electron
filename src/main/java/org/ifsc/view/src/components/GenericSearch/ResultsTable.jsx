@@ -1,4 +1,3 @@
-// src/components/GenericSearch/ResultsTable.jsx
 import React from "react";
 
 export default function ResultsTable({ columns, data }) {

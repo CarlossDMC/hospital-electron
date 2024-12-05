@@ -1,10 +1,9 @@
-// src/components/GenericSearch/GenericSearch.jsx
 import React, { useState } from "react";
-import axios from "axios"; // Certifique-se de instalar o axios: npm install axios
-import SearchForm from "./SearchForm";
-import ResultsTable from "./ResultsTable";
+import axios from "axios";
+import SearchForm from "./SearchForm.jsx";
+import ResultsTable from "./ResultsTable.jsx";
 
-export default function GenericSearch({ fields, endpoint, columns }) {
+export default function GenericSearch({ fields, endpoint, columns, registerPath }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -25,7 +24,12 @@ export default function GenericSearch({ fields, endpoint, columns }) {
 
     return (
         <div className="p-4">
-            <SearchForm fields={fields} onSearch={handleSearch} loading={loading} />
+            <SearchForm
+                fields={fields}
+                onSearch={handleSearch}
+                loading={loading}
+                registerPath={registerPath} // Passa a prop para SearchForm
+            />
             {error && (
                 <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
                     {error}

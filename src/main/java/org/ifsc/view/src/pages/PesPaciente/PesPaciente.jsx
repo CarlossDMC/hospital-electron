@@ -1,9 +1,7 @@
-// src/pages/SearchPatients.jsx
 import React from "react";
-import GenericSearch from "../../components/GenericSearch/GenericSearch";
+import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
-
-export default function PesPaciente() {
+export default function SearchPatients() {
     const searchFields = [
         { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do paciente" },
         { name: "age", label: "Idade", type: "number", placeholder: "Digite a idade" },
@@ -20,12 +18,18 @@ export default function PesPaciente() {
         // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/patients"; // Substitua pelo seu endpoint real
+    const endpoint = "https://api.exemplo.com/patients";
+    const registerPath = "/CadPaciente";
 
     return (
         <div className="container mx-auto">
             <h1 className="text-3xl font-bold mb-6">Pesquisar Pacientes</h1>
-            <GenericSearch fields={searchFields} endpoint={endpoint} columns={tableColumns} />
+            <GenericSearch
+                fields={searchFields}
+                endpoint={endpoint}
+                columns={tableColumns}
+                registerPath={registerPath}
+            />
         </div>
     );
 }

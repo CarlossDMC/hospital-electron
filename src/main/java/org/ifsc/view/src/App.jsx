@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import CadPaciente from "./pages/CadPaciente/CadPaciente.jsx";
 import SideBar from "./components/SideBar.jsx";
+import PesPaciente from "./pages/PesPaciente/PesPaciente.jsx";
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/CadPaciente" element={<CadPaciente />} />
+                        <Route path="/PesPaciente" element={<PesPaciente />} />
                     </Routes>
                 </div>
             </div>

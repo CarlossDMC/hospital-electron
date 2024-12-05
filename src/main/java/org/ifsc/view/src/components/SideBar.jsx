@@ -1,4 +1,3 @@
-// src/components/SideBar.jsx
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaUserPlus, FaBars } from "react-icons/fa";
@@ -13,8 +12,7 @@ export default function SideBar() {
 
     const menuItems = [
         { name: "Home", path: "/", icon: <FaHome /> },
-        { name: "Cadastrar Paciente", path: "/CadPaciente", icon: <FaUserPlus /> },
-        // Adicione mais itens conforme necessário
+        { name: "Listar Pacientes", path: "/PesPaciente", icon: <FaUserPlus />}
     ];
 
     return (

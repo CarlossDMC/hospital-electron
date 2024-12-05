@@ -1,7 +1,7 @@
-// src/components/GenericSearch/SearchForm.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function SearchForm({ fields, onSearch, loading }) {
+export default function SearchForm({ fields, onSearch, loading, registerPath }) {
     const [formData, setFormData] = React.useState({});
 
     const handleChange = (e) => {
@@ -33,7 +33,15 @@ export default function SearchForm({ fields, onSearch, loading }) {
                     </div>
                 ))}
             </div>
-            <div className="mt-4 flex justify-end">
+            <div className="mt-4 flex justify-end space-x-2">
+                {registerPath && (
+                    <Link
+                        to={registerPath}
+                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                    >
+                        Cadastrar
+                    </Link>
+                )}
                 <button
                     type="submit"
                     disabled={loading}
