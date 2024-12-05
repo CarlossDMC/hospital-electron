@@ -5,41 +5,59 @@ import GenericRegister from "../../components/GenericRegister/GenericRegister.js
 export default function CadAcompanhante() {
     const registerFields = [
         {
-            name: "name",
+            name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do acompanhante",
             required: true,
         },
         {
-            name: "relationship",
-            label: "Relação",
+            name: "grauParentesco",
+            label: "Grau de Parentesco",
             type: "text",
-            placeholder: "Digite a relação com o paciente",
+            placeholder: "Digite o grau de parentesco",
             required: true,
         },
         {
-            name: "contact",
-            label: "Contato",
+            name: "cpf",
+            label: "CPF",
             type: "text",
-            placeholder: "Digite o contato",
+            placeholder: "Digite o CPF do acompanhante",
             required: true,
         },
-        // Adicione mais campos conforme necessário
+        {
+            name: "fone",
+            label: "Telefone",
+            type: "text",
+            placeholder: "Digite o telefone do acompanhante",
+            required: true,
+        },
+        {
+            name: "email",
+            label: "Email",
+            type: "email",
+            placeholder: "Digite o email do acompanhante",
+            required: true,
+        },
+        {
+            name: "status",
+            label: "Status",
+            type: "text",
+            placeholder: "Digite o status do acompanhante",
+            required: true,
+        },
     ];
 
-    const endpoint = "https://api.exemplo.com/acompanhantes"; // Substitua pelo seu endpoint real
-    const successPath = "/PesAcompanhante"; // Rota para redirecionamento após cadastro
+    const endpoint = "https://api.exemplo.com/acompanhantes"; // Substitua pelo endpoint real da sua API
+    const successPath = "/PesAcompanhante"; // Ajuste a rota de sucesso após o cadastro
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold mb-6">Cadastrar Acompanhante</h1>
             <GenericRegister
                 fields={registerFields}
                 endpoint={endpoint}
                 successPath={successPath}
-                // onSuccess={(data) => console.log("Cadastro bem-sucedido:", data)}
-                // onError={(error) => console.error("Erro no cadastro:", error)}
             />
         </div>
     );

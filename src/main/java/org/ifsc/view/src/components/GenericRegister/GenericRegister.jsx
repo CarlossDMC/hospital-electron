@@ -22,10 +22,10 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
 
         if (cep.length !== 8) {
             setCepError("CEP inválido. Deve conter 8 dígitos.");
-            setValue("city", "");
-            setValue("neighborhood", "");
-            setValue("address", "");
-            setValue("complement", "");
+            setValue("cidade", "");
+            setValue("bairro", "");
+            setValue("logradouro", "");
+            setValue("complemento", "");
             return;
         }
 
@@ -36,23 +36,23 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
             if (response.data.erro) {
                 setCepError("CEP não encontrado.");
-                setValue("city", "");
-                setValue("neighborhood", "");
-                setValue("address", "");
-                setValue("complement", "");
+                setValue("cidade", "");
+                setValue("bairro", "");
+                setValue("logradouro", "");
+                setValue("complemento", "");
             } else {
-                setValue("city", response.data.localidade || "");
-                setValue("neighborhood", response.data.bairro || "");
-                setValue("address", response.data.logradouro || "");
-                setValue("complement", response.data.complemento || "");
+                setValue("cidade", response.data.localidade || "");
+                setValue("bairro", response.data.bairro || "");
+                setValue("logradouro", response.data.logradouro || "");
+                setValue("complemento", response.data.complemento || "");
                 setCepError(null);
             }
         } catch (error) {
             setCepError("Erro ao buscar o CEP.");
-            setValue("city", "");
-            setValue("neighborhood", "");
-            setValue("address", "");
-            setValue("complement", "");
+            setValue("cidade", "");
+            setValue("bairro", "");
+            setValue("logradouro", "");
+            setValue("complemento", "");
         } finally {
             setIsFetchingCep(false);
         }
@@ -101,7 +101,7 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                             {field.name === "cep" ? (
                                 <InputMask
                                     mask="99999-999"
-                                    {...register(field.name)}
+                                    {...register(field.name, { required: field.required })}
                                     onBlur={handleCepBlur}
                                     className={`mt-1 block w-full border ${
                                         cepError ? "border-red-500" : "border-gray-300"
@@ -110,7 +110,7 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                                 />
                             ) : field.type === "select" ? (
                                 <select
-                                    {...register(field.name)}
+                                    {...register(field.name, { required: field.required })}
                                     className={`mt-1 block w-full border ${
                                         errors[field.name] ? "border-red-500" : "border-gray-300"
                                     } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
@@ -125,7 +125,7 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                             ) : (
                                 <input
                                     type={field.type || "text"}
-                                    {...register(field.name)}
+                                    {...register(field.name, { required: field.required })}
                                     className={`mt-1 block w-full border ${
                                         errors[field.name] ? "border-red-500" : "border-gray-300"
                                     } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
@@ -137,7 +137,7 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                                 <p className="mt-1 text-xs text-red-600">{cepError}</p>
                             )}
                             {errors[field.name] && field.name !== "cep" && (
-                                <p className="mt-1 text-xs text-red-600">{errors[field.name].message}</p>
+                                <p className="mt-1 text-xs text-red-600">{errors[field.name].type === "required" ? `${field.label} é obrigatório.` : errors[field.name].message}</p>
                             )}
                         </div>
                     ))}
