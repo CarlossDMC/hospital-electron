@@ -18,9 +18,9 @@ public class Database {
 
     public static void openConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+            String url = "jdbc:mysql://localhost:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
             String user = "root";
-            String password = "98656915";
+            String password = "bru!@#";
 
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Conexão estabelecida com sucesso!");

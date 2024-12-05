@@ -36,7 +36,7 @@ export default function SideBar() {
         <div className={`bg-green-600 text-white ${isOpen ? "w-64" : "w-20"} transition-width duration-300 flex flex-col h-full`}>
             {/* Cabeçalho da Sidebar */}
             <div className="flex items-center justify-between p-4">
-                {isOpen && <span className="text-lg font-semibold">Meu App</span>}
+                {isOpen && <span className="text-lg font-semibold">IFSC - Hospital</span>}
                 <button onClick={toggleSidebar} className="focus:outline-none">
                     <FaBars />
                 </button>

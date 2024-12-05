@@ -16,10 +16,9 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
     const [cepError, setCepError] = React.useState(null);
     const [isFetchingCep, setIsFetchingCep] = React.useState(false);
 
-    const watchedCep = watch("cep"); // Nome do campo CEP
-
+    const watchedCep = watch("cep");
     const handleCepBlur = async (e) => {
-        const cep = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        const cep = e.target.value.replace(/\D/g, '');
 
         if (cep.length !== 8) {
             setCepError("CEP inválido. Deve conter 8 dígitos.");
@@ -35,7 +34,6 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
 
         try {
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-            alert(response)
             if (response.data.erro) {
                 setCepError("CEP não encontrado.");
                 setValue("city", "");
@@ -51,8 +49,6 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
             }
         } catch (error) {
             setCepError("Erro ao buscar o CEP.");
-            alert(error);
-            // Limpar os campos de endereço
             setValue("city", "");
             setValue("neighborhood", "");
             setValue("address", "");
