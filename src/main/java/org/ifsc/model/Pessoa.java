@@ -1,23 +1,25 @@
 package org.ifsc.model;
 
+import java.time.LocalDateTime;
+
 public class Pessoa {
-	private String id;
+	private Long id;
 	private String nome;
 	private String fone1;
 	private String fone2;
 	private String email;
 	private String cpfCnpj;
 	private String rgInscricaoEstadual;
-	private String dataCadastro;
+	private LocalDateTime dataCadastro;
 	private String cep;
 	private String cidade;
 	private String bairro;
 	private String logradouro;
 	private String complemento;
-	
-	
-	public Pessoa(String id, String nome, String fone1, String fone2, String email, String cpfCnpj,
-			String rgInscricaoEstadual, String dataCadastro, String cep, String cidade, String bairro,
+
+
+	public Pessoa(Long id, String nome, String fone1, String fone2, String email, String cpfCnpj,
+			String rgInscricaoEstadual, LocalDateTime dataCadastro, String cep, String cidade, String bairro,
 			String logradouro, String complemento) {
 		this.id = id;
 		this.nome = nome;
@@ -39,12 +41,12 @@ public class Pessoa {
 	}
 
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -109,12 +111,12 @@ public class Pessoa {
 	}
 
 
-	public String getDataCadastro() {
+	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
 
 
-	public void setDataCadastro(String dataCadastro) {
+	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

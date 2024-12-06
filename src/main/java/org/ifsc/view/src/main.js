@@ -38,11 +38,16 @@ app.whenReady().then(() => {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          "default-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://viacep.com.br; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
+          "default-src 'self' data:; " +
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+          "connect-src 'self' https://viacep.com.br http://localhost:8000; " +
+          "img-src 'self' data:; " +
+          "style-src 'self' 'unsafe-inline';"
         ]
       }
     });
   });
+
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

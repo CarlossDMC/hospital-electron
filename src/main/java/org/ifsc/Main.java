@@ -1,8 +1,7 @@
 package org.ifsc;
 
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.ifsc.DB.Database;
+import org.ifsc.DB.DB;
 import org.ifsc.controller.PacienteHandler;
 
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class Main {
 
         System.out.println("Servidor rodando na porta 8000!");
         try {
-            Database.openConnection();
+            DB.openConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

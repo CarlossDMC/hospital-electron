@@ -15,12 +15,28 @@ import CadMedico from "./pages/CadMedico/CadMedico.jsx";
 import CadUsuario from "./pages/CadUsuario/CadUsuario.jsx";
 import SideBar from "./components/SideBar.jsx";
 import CadPaciente from "./pages/CadPaciente/CadPaciente.jsx";
+import {ToastContainer, Bounce} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
     return (
         <Router>
             <div className="flex h-screen">
+
                 <SideBar />
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+                <ToastContainer />
                 <div className="flex-1 bg-gray-100 p-4 overflow-auto">
                     <Routes>
                         <Route path="/" element={<Home />} />

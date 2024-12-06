@@ -1,11 +1,8 @@
 package org.ifsc.DB;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class Database {
+public class DB {
 
     private static java.sql.Connection connection;
 
@@ -53,6 +50,18 @@ public class Database {
         System.out.println("Query: " + query);
         return stmt.executeQuery(query);
     }
+    public static ResultSet consultQuery(String query, java.util.List<Object> params) throws SQLException {
+        if (connection.isClosed()) {
+            openConnection();
+        }
+        PreparedStatement stmt = connection.prepareStatement(query);
+        for (int i = 0; i < params.size(); i++) {
+            stmt.setObject(i + 1, params.get(i));
+        }
+        System.out.println("Query: " + stmt);
+        return stmt.executeQuery();
+    }
+
 
     /**
      * Retorna um int com o numero de linhas alteradas
@@ -65,6 +74,24 @@ public class Database {
         Statement stmt = connection.createStatement();
         System.out.println("Query: " + query);
         return stmt.executeUpdate(query);
+    }
+
+    /**
+     * Retorna um int com o numero de linhas alteradas
+     * @param query Query do mysql.
+     */
+    public static int executeQuery(String query, java.util.List<Object> params) throws SQLException {
+        if (connection == null) {
+            openConnection();
+        }
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+            System.out.println("Query: " + query);
+            System.out.println("Parameters: " + params);
+            return stmt.executeUpdate();
+        }
     }
 
 
