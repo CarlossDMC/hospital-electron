@@ -1,15 +1,15 @@
 // src/components/GenericRegister/GenericRegister.jsx
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, {useEffect} from "react";
+import {useForm} from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { FaSpinner } from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
+import {FaSpinner} from "react-icons/fa";
 import InputMask from "react-input-mask";
 
-export default function GenericRegister({ fields, endpoint, successPath, onSuccess, onError }) {
+export default function GenericRegister({fields, endpoint, successPath, onSuccess, onError}) {
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors }, reset, watch, setValue } = useForm();
+    const {register, handleSubmit, formState: {errors}, reset, watch, setValue} = useForm();
 
     const [loading, setLoading] = React.useState(false);
     const [serverError, setServerError] = React.useState(null);
@@ -108,6 +108,19 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                                     } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                                     placeholder={field.placeholder || ""}
                                 />
+                            ) : field.name === "cpfCnpj" ? (
+                                <InputMask
+                                    mask={
+                                        field.type === "cpf_cnpj" && field.value?.length > 14
+                                            ? "99.999.999/9999-99"
+                                            : "999.999.999-99"
+                                    }
+                                    {...register(field.name, { required: field.required })}
+                                    className={`mt-1 block w-full border ${
+                                        errors[field.name] ? "border-red-500" : "border-gray-300"
+                                    } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+                                    placeholder={field.placeholder || ""}
+                                />
                             ) : field.type === "select" ? (
                                 <select
                                     {...register(field.name, { required: field.required })}
@@ -116,11 +129,12 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                                     } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                                 >
                                     <option value="">{field.placeholder || "Selecione"}</option>
-                                    {field.options && field.options.map((option) => (
-                                        <option key={option.value} value={option.value}>
-                                            {option.label}
-                                        </option>
-                                    ))}
+                                    {field.options &&
+                                        field.options.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
                                 </select>
                             ) : (
                                 <input
@@ -132,15 +146,19 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                                     placeholder={field.placeholder || ""}
                                 />
                             )}
-                            {/* Exibição de erros específicos por campo, se necessário */}
                             {field.name === "cep" && cepError && (
                                 <p className="mt-1 text-xs text-red-600">{cepError}</p>
                             )}
                             {errors[field.name] && field.name !== "cep" && (
-                                <p className="mt-1 text-xs text-red-600">{errors[field.name].type === "required" ? `${field.label} é obrigatório.` : errors[field.name].message}</p>
+                                <p className="mt-1 text-xs text-red-600">
+                                    {errors[field.name].type === "required"
+                                        ? `${field.label} é obrigatório.`
+                                        : errors[field.name].message}
+                                </p>
                             )}
                         </div>
                     ))}
+
                 </div>
                 <div className="mt-6 flex justify-end">
                     <button
@@ -148,7 +166,7 @@ export default function GenericRegister({ fields, endpoint, successPath, onSucce
                         disabled={loading}
                         className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:opacity-50 flex items-center"
                     >
-                        {loading && <FaSpinner className="animate-spin mr-2" />}
+                        {loading && <FaSpinner className="animate-spin mr-2"/>}
                         {loading ? "Salvando..." : "Salvar"}
                     </button>
                 </div>

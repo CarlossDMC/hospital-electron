@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import SearchForm from "./SearchForm.jsx";
 import ResultsTable from "./ResultsTable.jsx";
 
-export default function GenericSearch({ fields, endpoint, columns, registerPath }) {
+export default function GenericSearch({ fields, endpoint, columns, registerPath, idAcess }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSearch = async (formData) => {
+    const handleSearch = async (formData) =>
+    {
+
         setLoading(true);
         setError(null);
         try {
@@ -21,6 +23,7 @@ export default function GenericSearch({ fields, endpoint, columns, registerPath 
             setLoading(false);
         }
     };
+
 
     return (
         <div className="p-4">
@@ -35,7 +38,7 @@ export default function GenericSearch({ fields, endpoint, columns, registerPath 
                     {error}
                 </div>
             )}
-            <ResultsTable columns={columns} data={data} />
+            <ResultsTable columns={columns} data={data} registerPath={registerPath} idAcess={idAcess} />
         </div>
     );
 }

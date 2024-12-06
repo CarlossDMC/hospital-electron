@@ -35,9 +35,9 @@ export default function CadPaciente() {
         },
         {
             name: "cpfCnpj",
-            label: "CPF/CNPJ",
+            label: "CPF",
             type: "text",
-            placeholder: "Digite o CPF ou CNPJ do paciente",
+            placeholder: "Digite o CPF do paciente",
             required: true,
         },
         {

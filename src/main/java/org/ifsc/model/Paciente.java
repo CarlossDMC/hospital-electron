@@ -6,6 +6,7 @@ import org.ifsc.utils.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 			params.add(this.getEmail());
 			params.add(this.getCpfCnpj());
 			params.add(this.getRgInscricaoEstadual());
-			params.add(java.sql.Timestamp.valueOf(LocalDateTime.now())); // Define dataCadastro somente no INSERT
+			params.add(Timestamp.valueOf(LocalDateTime.now())); // Define dataCadastro somente no INSERT
 			params.add(this.getCep());
 			params.add(this.getCidade());
 			params.add(this.getBairro());
@@ -104,7 +105,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		}
 
 		try {
-			DB.executeQuery(query, params); // Executa a query com os parâmetros
+			executeQuery(query, params); // Executa a query com os parâmetros
 			return findById(this.getId() != null ? this.getId() : Utils.getLastInsertedId("paciente"));
 		} catch (SQLException e) {
 			System.err.println("Erro ao salvar o paciente: " + e.getMessage());
@@ -113,9 +114,32 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		}
 	}
 
-	@Override
-	public List<Paciente> findAll() {
-		return List.of();
+	public static List<Paciente> findAll() throws SQLException {
+		String sql = "SELECT * FROM paciente";
+		ResultSet rs = DB.consultQuery(sql);
+		List<Paciente> resultList = new ArrayList<>();
+		while (rs.next()){
+			Paciente paciente = new Paciente(
+					rs.getLong("id"),
+					rs.getString("nome"),
+					rs.getString("fone1"),
+					rs.getString("fone2"),
+					rs.getString("email"),
+					rs.getString("cpf_Cnpj"),
+					rs.getString("rg_Inscricao_Estadual"),
+					null,
+					rs.getString("cep"),
+					rs.getString("cidade"),
+					rs.getString("bairro"),
+					rs.getString("logradouro"),
+					rs.getString("complemento"),
+					rs.getString("tipo_Sanguineo"),
+					rs.getString("sexo"),
+					rs.getString("nome_Social"));
+
+			resultList.add(paciente);
+		}
+		return resultList;
 	}
 
 	@Override

@@ -7,6 +7,9 @@ import org.ifsc.service.PacienteService;
 import org.ifsc.utils.JsonUtils;
 import org.ifsc.utils.Utils;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import java.io.IOException;
 
 public class PacienteHandler implements HttpHandler {
@@ -24,8 +27,8 @@ public class PacienteHandler implements HttpHandler {
         try {
             switch (method) {
                 case "GET":
-                    response = "Método GET ainda não implementado.";
-                    statusCode = 405;
+                    response = JsonUtils.toJson(getAll());
+                    statusCode = 200;
                     break;
                 case "POST":
                     Paciente paciente = insertPaciente(boddy);
@@ -63,5 +66,9 @@ public class PacienteHandler implements HttpHandler {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    private List<Paciente> getAll() throws SQLException {
+        return Paciente.findAll();
     }
 }
