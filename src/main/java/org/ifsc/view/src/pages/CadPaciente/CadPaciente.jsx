@@ -1,16 +1,24 @@
-// src/pages/CadPaciente.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
-import {Bounce, toast} from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 
 export default function CadPaciente() {
     const registerFields = [
+        {
+            name: "id",
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "20%",
+        },
         {
             name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do paciente",
             required: true,
+            width: "50%", // Largura customizada
         },
         {
             name: "fone1",
@@ -18,6 +26,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o telefone fixo",
             required: true,
+            width: "25%", // Largura customizada
         },
         {
             name: "fone2",
@@ -25,6 +34,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o telefone celular",
             required: false,
+            width: "30%", // Largura customizada
         },
         {
             name: "email",
@@ -32,6 +42,7 @@ export default function CadPaciente() {
             type: "email",
             placeholder: "Digite o email do paciente",
             required: true,
+            width: "30%", // Ocupa toda a largura
         },
         {
             name: "cpfCnpj",
@@ -39,6 +50,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o CPF do paciente",
             required: true,
+            width: "35%",
         },
         {
             name: "rgInscricaoEstadual",
@@ -143,7 +155,6 @@ export default function CadPaciente() {
                         transition: Bounce,
                     });
                 }}
-                // onError={(error) => console.error("Erro no cadastro:", error)}
             />
         </div>
     );

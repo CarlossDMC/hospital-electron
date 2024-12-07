@@ -13,7 +13,7 @@ export default function SearchPatients() {
 
     const tableColumns = [
         { header: "ID", accessor: "id", width: "50px" },
-        { header: "Nome", accessor: "nome", width: "300px" },
+        { header: "Nome", accessor: "nome", width: "200px" },
         { header: "Telefone", accessor: "fone1", width: "150px" },
         { header: "Celular", accessor: "fone2", width: "150px" },
         { header: "Email", accessor: "email", width: "250px" },

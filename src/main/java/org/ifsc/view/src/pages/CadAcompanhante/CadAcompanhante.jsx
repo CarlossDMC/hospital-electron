@@ -5,6 +5,14 @@ import GenericRegister from "../../components/GenericRegister/GenericRegister.js
 export default function CadAcompanhante() {
     const registerFields = [
         {
+            name: "id",
+            label: "Id",
+            type: "number",
+            placeholder: "Identificador do pacinete",
+            required: false,
+            disabled:true
+        },
+        {
             name: "nome",
             label: "Nome",
             type: "text",
