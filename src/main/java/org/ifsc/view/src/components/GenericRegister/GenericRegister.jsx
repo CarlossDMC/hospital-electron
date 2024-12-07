@@ -126,6 +126,7 @@ export default function GenericRegister({
                         >
                             <label className="block text-sm font-medium text-gray-700">
                                 {field.label}
+                                {field.required && <span className={'text-red-600'}> *</span>}
                             </label>
                             {field.name === "cep" ? (
                                 <InputMask
