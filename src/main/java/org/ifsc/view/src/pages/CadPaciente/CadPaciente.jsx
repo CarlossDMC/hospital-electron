@@ -18,7 +18,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o nome do paciente",
             required: true,
-            width: "50%", // Largura customizada
+            width: "50%",
         },
         {
             name: "fone1",
@@ -26,7 +26,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o telefone fixo",
             required: true,
-            width: "25%", // Largura customizada
+            width: "25%",
         },
         {
             name: "fone2",
@@ -34,7 +34,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o telefone celular",
             required: false,
-            width: "30%", // Largura customizada
+            width: "30%",
         },
         {
             name: "email",
@@ -42,7 +42,7 @@ export default function CadPaciente() {
             type: "email",
             placeholder: "Digite o email do paciente",
             required: true,
-            width: "30%", // Ocupa toda a largura
+            width: "30%",
         },
         {
             name: "cpfCnpj",
@@ -58,6 +58,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o RG ou inscrição estadual",
             required: true,
+            width: "35%",
         },
         {
             name: "cep",
@@ -65,6 +66,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o CEP",
             required: true,
+            width: "30%"
         },
         {
             name: "cidade",
@@ -72,6 +74,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite a cidade",
             required: true,
+            width: "30%"
         },
         {
             name: "bairro",
@@ -79,6 +82,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
+            width: "30%"
         },
         {
             name: "logradouro",
@@ -86,6 +90,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o logradouro",
             required: true,
+            width: "35%",
         },
         {
             name: "complemento",
@@ -93,6 +98,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o complemento",
             required: false,
+            width: "30%",
         },
         {
             name: "tipoSanguineo",
@@ -110,6 +116,7 @@ export default function CadPaciente() {
             ],
             placeholder: "Selecione o tipo sanguíneo",
             required: true,
+            width: "35%",
         },
         {
             name: "sexo",
@@ -122,6 +129,7 @@ export default function CadPaciente() {
             ],
             placeholder: "Selecione o sexo",
             required: true,
+            width: "30%",
         },
         {
             name: "nomeSocial",
@@ -129,6 +137,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o nome social (opcional)",
             required: false,
+            width: "30%",
         },
     ];
 
