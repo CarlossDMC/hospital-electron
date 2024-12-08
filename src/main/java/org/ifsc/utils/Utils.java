@@ -6,10 +6,14 @@ import org.ifsc.DB.DB;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Utils {
     public String getRequestBody(HttpExchange exchange) throws IOException {
@@ -22,6 +26,30 @@ public class Utils {
         }
         return body.toString();
     }
+
+    public static Map<String, String> extractQueryParams(HttpExchange exchange) {
+        Map<String, String> queryParams = new HashMap<>();
+        String query = exchange.getRequestURI().getQuery();
+        if (query != null && !query.isEmpty()) {
+            String[] pairs = query.split("&");
+            for (String pair : pairs) {
+                String[] keyValue = pair.split("=", 2);
+                try {
+                    String key = URLDecoder.decode(keyValue[0], "UTF-8");
+                    String value = keyValue.length > 1
+                            ? URLDecoder.decode(keyValue[1].replace("+", "%2B").replace("-", "%2D"), "UTF-8")
+                            : "";
+                    queryParams.put(key, value);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return queryParams;
+    }
+
+
+
 
 
     public static Long getLastInsertedId(String tableName) throws SQLException {

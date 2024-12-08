@@ -1,5 +1,6 @@
 package org.ifsc.controller;
 
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.ifsc.model.Paciente;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class PacienteHandler implements HttpHandler {
     private final Utils utils = new Utils();
@@ -22,6 +24,7 @@ public class PacienteHandler implements HttpHandler {
         String method = exchange.getRequestMethod();
         String boddy = utils.getRequestBody(exchange);
         Long id = Utils.extractPatchID(exchange);
+        Map<String, String> headers = Utils.extractQueryParams(exchange);
         String response = "";
         int statusCode = 200;
 
@@ -29,7 +32,7 @@ public class PacienteHandler implements HttpHandler {
             switch (method) {
                 case "GET":
                     if (id == null) {
-                        response = JsonUtils.toJson(getAll());
+                        response = JsonUtils.toJson(getAll(headers));
                     }else{
                         response = JsonUtils.toJson(Paciente.findById(id));
                     }
@@ -76,7 +79,7 @@ public class PacienteHandler implements HttpHandler {
         }
     }
 
-    private List<Paciente> getAll() throws SQLException {
-        return Paciente.findAll();
+    private List<Paciente> getAll(Map<String, String> headers) throws SQLException {
+        return Paciente.findAll(headers);
     }
 }

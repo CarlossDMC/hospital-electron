@@ -4,10 +4,10 @@ import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 export default function SearchPatients() {
     const searchFields = [
         { name: "nome", label: "Nome", type: "text", placeholder: "Digite o nome do paciente" },
-        { name: "cpfCnpj", label: "CPF/CNPJ", type: "text", placeholder: "Digite o CPF ou CNPJ" },
+        { name: "cpf_cnpj", label: "CPF/CNPJ", type: "text", placeholder: "Digite o CPF ou CNPJ" },
         { name: "email", label: "Email", type: "email", placeholder: "Digite o email do paciente" },
         { name: "cidade", label: "Cidade", type: "text", placeholder: "Digite a cidade" },
-        { name: "tipoSanguineo", label: "Tipo Sanguíneo", type: "text", placeholder: "Digite o tipo sanguíneo" },
+        { name: "tipo_sanguineo", label: "Tipo Sanguíneo", type: "text", placeholder: "Digite o tipo sanguíneo" },
         { name: "sexo", label: "Sexo", type: "text", placeholder: "Digite o sexo" },
     ];
 

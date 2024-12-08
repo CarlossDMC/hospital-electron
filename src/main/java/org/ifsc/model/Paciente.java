@@ -1,5 +1,6 @@
 package org.ifsc.model;
 
+import com.sun.net.httpserver.Headers;
 import org.ifsc.DB.DB;
 import org.ifsc.DB.InterfaceDAO;
 import org.ifsc.utils.Utils;
@@ -10,6 +11,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.ifsc.DB.DB.executeQuery;
 
@@ -114,11 +116,26 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		}
 	}
 
-	public static List<Paciente> findAll() throws SQLException {
-		String sql = "SELECT * FROM paciente";
-		ResultSet rs = DB.consultQuery(sql);
+	public static List<Paciente> findAll(Map<String, String> filter) throws SQLException {
+		StringBuilder sql = new StringBuilder("SELECT * FROM paciente WHERE 1=1");
+		List<Object> values = new ArrayList<>();
+
+		if (filter != null) {
+			for (Map.Entry<String, String> entry : filter.entrySet()) {
+				String key = entry.getKey();
+				String value = entry.getValue();
+
+				if (value != null && !value.trim().isEmpty()) {
+					sql.append(" AND ").append(key).append(" LIKE ?");
+					values.add("%" + value + "%");
+				}
+			}
+		}
+
+		ResultSet rs = DB.consultQuery(sql.toString(), values);
 		List<Paciente> resultList = new ArrayList<>();
-		while (rs.next()){
+
+		while (rs.next()) {
 			Paciente paciente = new Paciente(
 					rs.getLong("id"),
 					rs.getString("nome"),
@@ -141,6 +158,8 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		}
 		return resultList;
 	}
+
+
 
 	public static boolean deleteById(Long id){
 		try{
