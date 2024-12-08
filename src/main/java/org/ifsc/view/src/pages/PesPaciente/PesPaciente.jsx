@@ -7,9 +7,34 @@ export default function SearchPatients() {
         { name: "cpf_cnpj", label: "CPF/CNPJ", type: "text", placeholder: "Digite o CPF ou CNPJ" },
         { name: "email", label: "Email", type: "email", placeholder: "Digite o email do paciente" },
         { name: "cidade", label: "Cidade", type: "text", placeholder: "Digite a cidade" },
-        { name: "tipo_sanguineo", label: "Tipo Sanguíneo", type: "text", placeholder: "Digite o tipo sanguíneo" },
-        { name: "sexo", label: "Sexo", type: "text", placeholder: "Digite o sexo" },
+        {
+            name: "tipo_sanguineo",
+            label: "Tipo Sanguíneo",
+            type: "select",
+            placeholder: "Selecione o tipo sanguíneo",
+            options: [
+                { value: "O+", label: "O+" },
+                { value: "O-", label: "O-" },
+                { value: "A+", label: "A+" },
+                { value: "A-", label: "A-" },
+                { value: "B+", label: "B+" },
+                { value: "B-", label: "B-" },
+                { value: "AB+", label: "AB+" },
+                { value: "AB-", label: "AB-" },
+            ],
+        },
+        {
+            name: "sexo",
+            label: "Sexo",
+            type: "select",
+            placeholder: "Selecione o sexo",
+            options: [
+                { value: "Masculino", label: "Masculino" },
+                { value: "Feminino", label: "Feminino" },
+            ],
+        },
     ];
+
 
     const tableColumns = [
         { header: "ID", accessor: "id", width: "50px" },

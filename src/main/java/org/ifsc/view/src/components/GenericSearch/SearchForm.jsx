@@ -22,14 +22,30 @@ export default function SearchForm({ fields, onSearch, loading, registerPath }) 
                         <label className="block text-sm font-medium text-gray-700">
                             {field.label}
                         </label>
-                        <input
-                            type={field.type || "text"}
-                            name={field.name}
-                            value={formData[field.name] || ""}
-                            onChange={handleChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                            placeholder={field.placeholder || ""}
-                        />
+                        {field.type === "select" ? (
+                            <select
+                                name={field.name}
+                                value={formData[field.name] || ""}
+                                onChange={handleChange}
+                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            >
+                                <option value="">{field.placeholder || "Selecione"}</option>
+                                {field.options.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
+                        ) : (
+                            <input
+                                type={field.type || "text"}
+                                name={field.name}
+                                value={formData[field.name] || ""}
+                                onChange={handleChange}
+                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder={field.placeholder || ""}
+                            />
+                        )}
                     </div>
                 ))}
             </div>
