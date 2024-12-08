@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 import InputMask from "react-input-mask";
+import {Bounce, toast} from "react-toastify";
 
 export default function GenericRegister({
                                             fields,
@@ -11,7 +12,9 @@ export default function GenericRegister({
                                             successPath,
                                             onSuccess,
                                             onError,
-                                            initialData
+                                            entidade,
+                                            initialData,
+                                            id = 0,
                                         }) {
     const navigate = useNavigate();
 
@@ -31,12 +34,40 @@ export default function GenericRegister({
 
     const watchedCep = watch("cep");
 
-    // Carregar dados iniciais para edição
     useEffect(() => {
-        if (initialData) {
-            reset(initialData);
+        if (id && id !== 0) {
+            setLoading(true);
+            axios
+                .get(`${endpoint}/${id}`)
+                .then((response) => {
+                    reset(response.data);
+                })
+                .catch((error) => {
+                    console.error("Erro ao buscar os dados:", error);
+                    setServerError("Erro ao buscar os dados para edição.");
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
-    }, [initialData, reset]);
+    }, [id, endpoint, reset]);
+
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        navigate(successPath)
+        await axios.delete(`${endpoint}/${id}`)
+        toast.success(`${entidade} deletado(a) com sucesso!`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    }
 
     const handleCepBlur = async (e) => {
         const cep = e.target.value.replace(/\D/g, '');
@@ -84,14 +115,24 @@ export default function GenericRegister({
         setServerError(null);
 
         try {
-            // Fazer o POST para salvar/criar
             const response = await axios.post(endpoint, data);
 
             if (onSuccess) {
                 onSuccess(response.data);
             }
             navigate(successPath);
-            reset(); // Limpa o formulário após o sucesso
+            reset();
+            toast.success(`${entidade} salvo(a) com sucesso!`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setServerError(error.response.data.message);
@@ -121,10 +162,10 @@ export default function GenericRegister({
                             key={field.name}
                             style={{
                                 width: field.width || "100%",
-                                flex: `0 0 ${field.width || "100%"}`, // Respeita o tamanho definido
+                                flex: `0 0 ${field.width || "100%"}`,
                             }}
                         >
-                            <label className="block text-sm font-medium text-gray-700">
+                            <label className={`block text-sm font-medium text-gray-700`}>
                                 {field.label}
                                 {field.required && <span className={'text-red-600'}> *</span>}
                             </label>
@@ -133,32 +174,15 @@ export default function GenericRegister({
                                     mask="99999-999"
                                     {...register(field.name, { required: field.required })}
                                     onBlur={handleCepBlur}
-                                    value={field.value || ""}
                                     disabled={field.disabled || false}
                                     className={`mt-1 block w-full border ${
                                         cepError ? "border-red-500" : "border-gray-300"
                                     } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                                     placeholder={field.placeholder || ""}
                                 />
-                            ) : field.name === "cpfCnpj" ? (
-                                <InputMask
-                                    mask={
-                                        field.type === "cpf_cnpj" && field.value?.length > 14
-                                            ? "99.999.999/9999-99"
-                                            : "999.999.999-99"
-                                    }
-                                    {...register(field.name, { required: field.required })}
-                                    value={field.value || ""}
-                                    disabled={field.disabled || false}
-                                    className={`mt-1 block w-full border ${
-                                        errors[field.name] ? "border-red-500" : "border-gray-300"
-                                    } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
-                                    placeholder={field.placeholder || ""}
-                                />
                             ) : field.type === "select" ? (
                                 <select
                                     {...register(field.name, { required: field.required })}
-                                    value={field.value || ""}
                                     disabled={field.disabled || false}
                                     className={`mt-1 block w-full border ${
                                         errors[field.name] ? "border-red-500" : "border-gray-300"
@@ -176,18 +200,14 @@ export default function GenericRegister({
                                 <input
                                     type={field.type || "text"}
                                     {...register(field.name, { required: field.required })}
-                                    value={field.value || ""}
                                     disabled={field.disabled || false}
                                     className={`mt-1 block w-full border ${
                                         errors[field.name] ? "border-red-500" : "border-gray-300"
-                                    } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+                                    } rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${field.disabled ? 'bg-slate-100 cursor-not-allowed' : ''}`}
                                     placeholder={field.placeholder || ""}
                                 />
                             )}
-                            {field.name === "cep" && cepError && (
-                                <p className="mt-1 text-xs text-red-600">{cepError}</p>
-                            )}
-                            {errors[field.name] && field.name !== "cep" && (
+                            {errors[field.name] && (
                                 <p className="mt-1 text-xs text-red-600">
                                     {errors[field.name].type === "required"
                                         ? `${field.label} é obrigatório.`
@@ -197,15 +217,24 @@ export default function GenericRegister({
                         </div>
                     ))}
                 </div>
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-end gap-2">
                     <button
                         type="submit"
                         disabled={loading}
                         className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:opacity-50 flex items-center"
                     >
-                        {loading && <FaSpinner className="animate-spin mr-2" />}
+                        {loading && <FaSpinner className="animate-spin mr-2"/>}
                         {loading ? "Salvando..." : "Salvar"}
                     </button>
+
+                    {id !== 0 && <button
+                        onClick={handleDelete}
+                        disabled={loading}
+                        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 disabled:opacity-50 flex items-center"
+                    >
+                        {loading && <FaSpinner className="animate-spin mr-2"/>}
+                        {loading ? "Excluindo..." : "Excluir"}
+                    </button>}
                 </div>
             </form>
         </div>

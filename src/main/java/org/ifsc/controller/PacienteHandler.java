@@ -21,14 +21,18 @@ public class PacienteHandler implements HttpHandler {
         Utils.handleCors(exchange);
         String method = exchange.getRequestMethod();
         String boddy = utils.getRequestBody(exchange);
+        Long id = Utils.extractPatchID(exchange);
         String response = "";
         int statusCode = 200;
 
         try {
             switch (method) {
                 case "GET":
-                    response = JsonUtils.toJson(getAll());
-                    statusCode = 200;
+                    if (id == null) {
+                        response = JsonUtils.toJson(getAll());
+                    }else{
+                        response = JsonUtils.toJson(Paciente.findById(id));
+                    }
                     break;
                 case "POST":
                     Paciente paciente = insertPaciente(boddy);
@@ -40,9 +44,13 @@ public class PacienteHandler implements HttpHandler {
                     statusCode = 405;
                     break;
                 case "DELETE":
-                    response = "Método DELETE ainda não implementado.";
-                    statusCode = 405;
-                    break;
+                    if(id != null){
+                        Paciente.deleteById(id);
+                        break;
+                    }else{
+                        statusCode = 400;
+                        response = "Para excluir é necessário passar o id como parametro.";
+                    }
                 default:
                     response = "Método HTTP não suportado.";
                     statusCode = 400;

@@ -65,7 +65,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		if (this.getId() == null) {
 			query = "INSERT INTO paciente " +
 					"(nome, fone1, fone2, email, cpf_Cnpj, rg_Inscricao_Estadual, data_Cadastro, " +
-					"cep, cidade, bairro, logradouro, complemento, tipo_Sanguineo, sexo, nome_Social) " +
+					"cep, cidade, bairro, logradouro, complemento, tipo_Sanguineo, sexo, nome_social) " +
 					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			params.add(this.getNome());
 			params.add(this.getFone1());
@@ -73,7 +73,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 			params.add(this.getEmail());
 			params.add(this.getCpfCnpj());
 			params.add(this.getRgInscricaoEstadual());
-			params.add(Timestamp.valueOf(LocalDateTime.now())); // Define dataCadastro somente no INSERT
+			params.add(Timestamp.valueOf(LocalDateTime.now()));
 			params.add(this.getCep());
 			params.add(this.getCidade());
 			params.add(this.getBairro());
@@ -85,7 +85,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		} else {
 			query = "UPDATE paciente SET nome = ?, fone1 = ?, fone2 = ?, email = ?, " +
 					"cpf_Cnpj = ?, rg_Inscricao_Estadual = ?, cep = ?, cidade = ?, " +
-					"bairro = ?, logradouro = ?, complemento = ?, tipo_Sanguineo = ?, sexo = ?, nomeSocial = ? " +
+					"bairro = ?, logradouro = ?, complemento = ?, tipo_Sanguineo = ?, sexo = ?, nome_social = ? " +
 					"WHERE id = ?";
 			params.add(this.getNome());
 			params.add(this.getFone1());
@@ -105,7 +105,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		}
 
 		try {
-			executeQuery(query, params); // Executa a query com os parâmetros
+			executeQuery(query, params);
 			return findById(this.getId() != null ? this.getId() : Utils.getLastInsertedId("paciente"));
 		} catch (SQLException e) {
 			System.err.println("Erro ao salvar o paciente: " + e.getMessage());
@@ -142,8 +142,19 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		return resultList;
 	}
 
-	@Override
-	public Paciente findById(Long id) throws SQLException {
+	public static boolean deleteById(Long id){
+		try{
+			List params = List.of(id);
+			DB.executeQuery("DELETE FROM paciente WHERE id = ?;", params);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+
+
+	public static Paciente findById(Long id) throws SQLException {
 		String sql = "SELECT * FROM paciente WHERE id = ?";
 		List<Object> params = List.of(id);
 
@@ -165,7 +176,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 						rs.getString("complemento"),
 						rs.getString("tipo_Sanguineo"),
 						rs.getString("sexo"),
-						rs.getString("nome_Social")
+						rs.getString("nome_social")
 				);
 			}
 		} catch (SQLException e) {

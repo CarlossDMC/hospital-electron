@@ -41,6 +41,7 @@ export default function SearchPatients() {
                 endpoint={endpoint}
                 columns={tableColumns}
                 registerPath={registerPath}
+                idAcess={'id'}
             />
         </div>
     );

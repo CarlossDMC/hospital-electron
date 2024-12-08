@@ -50,4 +50,22 @@ public class Utils {
         }
         return false;
     }
+
+    public static Long extractPatchID(HttpExchange exchange) {
+        String path = exchange.getRequestURI().getPath();
+
+        String[] segments = path.split("/");
+
+        if (segments.length > 0) {
+            String lastSegment = segments[segments.length - 1];
+            try {
+                return Long.parseLong(lastSegment);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
 }

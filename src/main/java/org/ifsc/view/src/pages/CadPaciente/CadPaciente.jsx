@@ -1,8 +1,10 @@
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
 import { Bounce, toast } from "react-toastify";
+import {useParams} from "react-router-dom";
 
 export default function CadPaciente() {
+    const { id } = useParams();
     const registerFields = [
         {
             name: "id",
@@ -10,7 +12,7 @@ export default function CadPaciente() {
             type: "text",
             value: "123",
             disabled: true,
-            width: "20%",
+            width: "10%",
         },
         {
             name: "nome",
@@ -18,7 +20,7 @@ export default function CadPaciente() {
             type: "text",
             placeholder: "Digite o nome do paciente",
             required: true,
-            width: "50%",
+            width: "60%",
         },
         {
             name: "fone1",
@@ -149,21 +151,11 @@ export default function CadPaciente() {
             <h1 className="text-3xl font-bold mb-6">Cadastrar Paciente</h1>
             <GenericRegister
                 fields={registerFields}
+                entidade={'Paciente'}
                 endpoint={endpoint}
                 successPath={successPath}
-                onSuccess={() => {
-                    toast.success('Cadastro feito com sucesso!', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition: Bounce,
-                    });
-                }}
+                id={id || 0}
+                onSuccess={() => {}}
             />
         </div>
     );

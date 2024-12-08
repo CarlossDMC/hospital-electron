@@ -41,6 +41,7 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/CadPaciente" element={<CadPaciente />} />
+                        <Route path="/CadPaciente/:id" element={<CadPaciente />} />
                         <Route path="/PesPaciente" element={<PesPaciente />} />
                         <Route path="/PesAcompanhante" element={<PesAcompanhante />} />
                         <Route path="/PesEnfermeiro" element={<PesEnfermeiro />} />
@@ -48,12 +49,18 @@ export default function App() {
                         <Route path="/PesMedico" element={<PesMedico />} />
                         <Route path="/PesUsuario" element={<PesUsuario />} />
                         <Route path="/CadAcompanhante" element={<CadAcompanhante />} />
+                        <Route path="/CadAcompanhante/:id" element={<CadAcompanhante />} />
                         <Route path="/CadEnfermeiro" element={<CadEnfermeiro />} />
+                        <Route path="/CadEnfermeiro/:id" element={<CadEnfermeiro />} />
                         <Route path="/CadFarmaceutico" element={<CadFarmaceutico />} />
+                        <Route path="/CadFarmaceutico/:id" element={<CadFarmaceutico />} />
                         <Route path="/CadMedico" element={<CadMedico />} />
+                        <Route path="/CadMedico/:id" element={<CadMedico />} />
                         <Route path="/CadUsuario" element={<CadUsuario />} />
+                        <Route path="/CadUsuario/:id" element={<CadUsuario />} />
                         {/* Adicione mais rotas conforme necessário */}
                     </Routes>
+
                 </div>
             </div>
         </Router>
