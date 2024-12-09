@@ -1,4 +1,3 @@
-// src/pages/PesEnfermeiro.jsx
 import React from "react";
 import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
@@ -7,7 +6,6 @@ export default function PesEnfermeiro() {
         { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do enfermeiro" },
         { name: "department", label: "Departamento", type: "text", placeholder: "Digite o departamento" },
         { name: "shift", label: "Turno", type: "text", placeholder: "Digite o turno" },
-        // Adicione mais campos conforme necessário
     ];
 
     const tableColumns = [
@@ -15,11 +13,10 @@ export default function PesEnfermeiro() {
         { header: "Nome", accessor: "name" },
         { header: "Departamento", accessor: "department" },
         { header: "Turno", accessor: "shift" },
-        // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/enfermeiros"; // Substitua pelo seu endpoint real
-    const registerPath = "/CadEnfermeiro"; // Rota para a tela de cadastro de Enfermeiro
+    const endpoint = "http://localhost:8000/enfermeiro";
+    const registerPath = "/CadEnfermeiro";
 
     return (
         <div className="container mx-auto">

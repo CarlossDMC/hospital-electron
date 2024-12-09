@@ -1,4 +1,3 @@
-// src/pages/PesUsuario.jsx
 import React from "react";
 import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
@@ -7,7 +6,6 @@ export default function PesUsuario() {
         { name: "username", label: "Usuário", type: "text", placeholder: "Digite o nome de usuário" },
         { name: "role", label: "Função", type: "text", placeholder: "Digite a função" },
         { name: "email", label: "Email", type: "email", placeholder: "Digite o email" },
-        // Adicione mais campos conforme necessário
     ];
 
     const tableColumns = [
@@ -15,11 +13,10 @@ export default function PesUsuario() {
         { header: "Usuário", accessor: "username" },
         { header: "Função", accessor: "role" },
         { header: "Email", accessor: "email" },
-        // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/usuarios"; // Substitua pelo seu endpoint real
-    const registerPath = "/CadUsuario"; // Rota para a tela de cadastro de Usuário do Sistema
+    const endpoint = "http://localhost:8000/usuario";
+    const registerPath = "/CadUsuario";
 
     return (
         <div className="container mx-auto">

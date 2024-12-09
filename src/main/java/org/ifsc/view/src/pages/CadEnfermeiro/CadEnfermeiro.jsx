@@ -1,15 +1,23 @@
-// src/pages/CadEnfermeiro.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
 
 export default function CadEnfermeiro() {
     const registerFields = [
         {
+            name: "id",
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "10%",
+        },
+        {
             name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do enfermeiro",
             required: true,
+            width: "55%",
         },
         {
             name: "nomeSocial",
@@ -17,6 +25,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o nome social do enfermeiro",
             required: false,
+            width: "30%",
         },
         {
             name: "login",
@@ -24,6 +33,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o login do enfermeiro",
             required: true,
+            width: "35%",
         },
         {
             name: "senha",
@@ -31,6 +41,7 @@ export default function CadEnfermeiro() {
             type: "password",
             placeholder: "Digite a senha",
             required: true,
+            width: "30%",
         },
         {
             name: "cre",
@@ -38,6 +49,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o CRE do enfermeiro",
             required: true,
+            width: "30%",
         },
         {
             name: "cpfCnpj",
@@ -45,6 +57,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o CPF ou CNPJ",
             required: true,
+            width: "40%",
         },
         {
             name: "rgInscricaoEstadual",
@@ -52,6 +65,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o RG ou Inscrição Estadual",
             required: true,
+            width: "30%",
         },
         {
             name: "fone1",
@@ -59,6 +73,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o telefone",
             required: true,
+            width: "25%",
         },
         {
             name: "fone2",
@@ -66,6 +81,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o celular",
             required: false,
+            width: "30%",
         },
         {
             name: "email",
@@ -73,6 +89,7 @@ export default function CadEnfermeiro() {
             type: "email",
             placeholder: "Digite o email",
             required: true,
+            width: "35%",
         },
         {
             name: "cep",
@@ -80,6 +97,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o CEP",
             required: true,
+            width: "30%",
         },
         {
             name: "cidade",
@@ -87,6 +105,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite a cidade",
             required: true,
+            width: "35%",
         },
         {
             name: "bairro",
@@ -94,6 +113,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
+            width: "30%",
         },
         {
             name: "logradouro",
@@ -101,6 +121,7 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o logradouro",
             required: true,
+            width: "30%",
         },
         {
             name: "complemento",
@@ -108,11 +129,12 @@ export default function CadEnfermeiro() {
             type: "text",
             placeholder: "Digite o complemento",
             required: false,
+            width: "98.5%",
         },
     ];
 
-    const endpoint = "https://api.exemplo.com/enfermeiros"; // Substitua pelo endpoint real da sua API
-    const successPath = "/PesEnfermeiro"; // Ajuste a rota de sucesso após o cadastro
+    const endpoint = "http://localhost:8000/enfermeiro";
+    const successPath = "/PesEnfermeiro";
 
     return (
         <div className="container mx-auto p-4">

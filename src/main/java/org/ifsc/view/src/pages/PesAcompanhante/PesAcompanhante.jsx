@@ -1,4 +1,3 @@
-// src/pages/PesAcompanhante.jsx
 import React from "react";
 import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
@@ -15,11 +14,10 @@ export default function PesAcompanhante() {
         { header: "Nome", accessor: "name" },
         { header: "Relação", accessor: "relationship" },
         { header: "Contato", accessor: "contact" },
-        // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/acompanhantes"; // Substitua pelo seu endpoint real
-    const registerPath = "/CadAcompanhante"; // Rota para a tela de cadastro de Acompanhante
+    const endpoint = "http://localhost:8000/acompanhante";
+    const registerPath = "/CadAcompanhante";
 
     return (
         <div className="container mx-auto">

@@ -1,4 +1,3 @@
-// src/pages/CadUsuario.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
 
@@ -102,18 +101,10 @@ export default function CadUsuario() {
             placeholder: "Digite o complemento",
             required: false,
         },
-        // Caso queira incluir dataCadastro:
-        // {
-        //     name: "dataCadastro",
-        //     label: "Data de Cadastro",
-        //     type: "date",
-        //     placeholder: "Selecione a data de cadastro",
-        //     required: false,
-        // },
     ];
 
-    const endpoint = "https://api.exemplo.com/usuarios"; // Substitua pelo endpoint real da sua API
-    const successPath = "/PesUsuario"; // Ajuste para a rota de sucesso após o cadastro
+    const endpoint = "http://localhost:8000/usuario";
+    const successPath = "/PesUsuario";
 
     return (
         <div className="container mx-auto p-4">

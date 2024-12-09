@@ -1,4 +1,3 @@
-// src/pages/PesFarmaceutico.jsx
 import React from "react";
 import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
@@ -7,7 +6,6 @@ export default function PesFarmaceutico() {
         { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do farmacêutico" },
         { name: "licenseNumber", label: "Número da Licença", type: "text", placeholder: "Digite o número da licença" },
         { name: "pharmacy", label: "Farmácia", type: "text", placeholder: "Digite a farmácia" },
-        // Adicione mais campos conforme necessário
     ];
 
     const tableColumns = [
@@ -15,11 +13,10 @@ export default function PesFarmaceutico() {
         { header: "Nome", accessor: "name" },
         { header: "Número da Licença", accessor: "licenseNumber" },
         { header: "Farmácia", accessor: "pharmacy" },
-        // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/farmaceuticos"; // Substitua pelo seu endpoint real
-    const registerPath = "/CadFarmaceutico"; // Rota para a tela de cadastro de Farmacêutico
+    const endpoint = "http://localhost:8000/farmaceutico";
+    const registerPath = "/CadFarmaceutico";
 
     return (
         <div className="container mx-auto">

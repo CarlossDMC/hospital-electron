@@ -1,4 +1,3 @@
-// src/pages/PesMedico.jsx
 import React from "react";
 import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
@@ -7,7 +6,6 @@ export default function PesMedico() {
         { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do médico" },
         { name: "specialization", label: "Especialização", type: "text", placeholder: "Digite a especialização" },
         { name: "hospital", label: "Hospital", type: "text", placeholder: "Digite o hospital" },
-        // Adicione mais campos conforme necessário
     ];
 
     const tableColumns = [
@@ -15,11 +13,10 @@ export default function PesMedico() {
         { header: "Nome", accessor: "name" },
         { header: "Especialização", accessor: "specialization" },
         { header: "Hospital", accessor: "hospital" },
-        // Adicione mais colunas conforme necessário
     ];
 
-    const endpoint = "https://api.exemplo.com/medicos"; // Substitua pelo seu endpoint real
-    const registerPath = "/CadMedico"; // Rota para a tela de cadastro de Médico
+    const endpoint = "http://localhost:8000/medico";
+    const registerPath = "/CadMedico";
 
     return (
         <div className="container mx-auto">

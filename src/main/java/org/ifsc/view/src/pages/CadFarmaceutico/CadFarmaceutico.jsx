@@ -1,4 +1,3 @@
-// src/pages/CadFarmaceutico.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
 
@@ -111,8 +110,8 @@ export default function CadFarmaceutico() {
         },
     ];
 
-    const endpoint = "https://api.exemplo.com/farmaceuticos"; // Substitua pelo seu endpoint real
-    const successPath = "/PesFarmaceutico"; // Rota para redirecionamento após cadastro
+    const endpoint = "http://localhost:8000/farmaceutico";
+    const successPath = "/PesFarmaceutico";
 
     return (
         <div className="container mx-auto p-4">

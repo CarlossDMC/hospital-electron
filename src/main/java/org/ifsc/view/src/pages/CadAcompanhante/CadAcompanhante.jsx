@@ -1,4 +1,3 @@
-// src/pages/CadAcompanhante.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
 
@@ -56,8 +55,8 @@ export default function CadAcompanhante() {
         },
     ];
 
-    const endpoint = "https://api.exemplo.com/acompanhantes"; // Substitua pelo endpoint real da sua API
-    const successPath = "/PesAcompanhante"; // Ajuste a rota de sucesso após o cadastro
+    const endpoint = "http://localhost:8000/acompanhante";
+    const successPath = "/PesAcompanhante";
 
     return (
         <div className="container mx-auto p-4">
