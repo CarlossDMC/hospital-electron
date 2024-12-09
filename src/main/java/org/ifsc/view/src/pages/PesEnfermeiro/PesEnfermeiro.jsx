@@ -3,16 +3,16 @@ import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
 export default function PesEnfermeiro() {
     const searchFields = [
-        { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do enfermeiro" },
-        { name: "department", label: "Departamento", type: "text", placeholder: "Digite o departamento" },
-        { name: "shift", label: "Turno", type: "text", placeholder: "Digite o turno" },
+        { name: "nome", label: "Nome", type: "text", placeholder: "Digite o nome do enfermeiro" },
+        { name: "cre", label: "CRE", type: "text", placeholder: "Digite o CRE do enfermeiro" },
+        { name: "email", label: "Email", type: "text", placeholder: "Digite o email do enfermeiro" },
     ];
 
     const tableColumns = [
         { header: "ID", accessor: "id" },
-        { header: "Nome", accessor: "name" },
-        { header: "Departamento", accessor: "department" },
-        { header: "Turno", accessor: "shift" },
+        { header: "Nome", accessor: "nome" },
+        { header: "CRE", accessor: "cre" },
+        { header: "Email", accessor: "email" },
     ];
 
     const endpoint = "http://localhost:8000/enfermeiro";
@@ -22,6 +22,7 @@ export default function PesEnfermeiro() {
         <div className="container mx-auto">
             <h1 className="text-3xl font-bold mb-6">Pesquisar Enfermeiros</h1>
             <GenericSearch
+                idAcess={"id"}
                 fields={searchFields}
                 endpoint={endpoint}
                 columns={tableColumns}

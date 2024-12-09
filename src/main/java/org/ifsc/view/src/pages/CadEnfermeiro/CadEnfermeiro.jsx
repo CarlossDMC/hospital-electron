@@ -1,7 +1,9 @@
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
+import {useParams} from "react-router-dom";
 
 export default function CadEnfermeiro() {
+    const { id } = useParams();
     const registerFields = [
         {
             name: "id",
@@ -143,6 +145,8 @@ export default function CadEnfermeiro() {
                 fields={registerFields}
                 endpoint={endpoint}
                 successPath={successPath}
+                id={id || 0}
+                entidade={"Enfermeiro"}
             />
         </div>
     );

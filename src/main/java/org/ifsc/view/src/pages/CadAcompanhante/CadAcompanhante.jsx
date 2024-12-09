@@ -1,7 +1,9 @@
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
+import {useParams} from "react-router-dom";
 
 export default function CadAcompanhante() {
+    const { id } = useParams();
     const registerFields = [
         {
             name: "id",
@@ -54,8 +56,12 @@ export default function CadAcompanhante() {
         {
             name: "status",
             label: "Status",
-            type: "text",
-            placeholder: "Digite o status do acompanhante",
+            type: "select",
+            options: [
+                { label: "Ativo", value: "Ativo" },
+                { label: "Desativo", value: "Inativo" },
+            ],
+            placeholder: "Selecione o status do acompanhante",
             required: true,
             width: "31.5%",
         },
@@ -71,6 +77,9 @@ export default function CadAcompanhante() {
                 fields={registerFields}
                 endpoint={endpoint}
                 successPath={successPath}
+                id={id || 0}
+                onSuccess={() => {}}
+                entidade={"Acompanhante"}
             />
         </div>
     );

@@ -8,6 +8,10 @@ export default function GenericSearch({ fields, endpoint, columns, registerPath,
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        handleSearch()
+    }, []);
+
     const handleSearch = async (formData) =>
     {
 

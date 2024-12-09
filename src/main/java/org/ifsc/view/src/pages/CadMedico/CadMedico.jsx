@@ -1,8 +1,10 @@
 // src/pages/CadMedico.jsx
 import React from "react";
 import GenericRegister from "../../components/GenericRegister/GenericRegister.jsx";
+import {useParams} from "react-router-dom";
 
 export default function CadMedico() {
+    const { id } = useParams();
     const registerFields = [
         {
             name: "id",
@@ -134,7 +136,7 @@ export default function CadMedico() {
         },
     ];
 
-    const endpoint = "https://api.exemplo.com/doctors"; // Ajuste o endpoint real da sua API
+    const endpoint = "http://localhost:8000/medico"; // Ajuste o endpoint real da sua API
     const successPath = "/PesMedico"; // Ajuste a rota de sucesso após o cadastro
 
     return (
@@ -144,6 +146,8 @@ export default function CadMedico() {
                 fields={registerFields}
                 endpoint={endpoint}
                 successPath={successPath}
+                id={id || 0}
+                entidade={"Médico"}
             />
         </div>
     );

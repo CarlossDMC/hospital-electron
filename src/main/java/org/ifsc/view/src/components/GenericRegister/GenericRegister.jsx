@@ -40,7 +40,10 @@ export default function GenericRegister({
             axios
                 .get(`${endpoint}/${id}`)
                 .then((response) => {
-                    reset(response.data);
+                    const normalizedData = Object.fromEntries(
+                        Object.entries(response.data).map(([key, value]) => [key, value ?? ""])
+                    );
+                    reset(normalizedData);
                 })
                 .catch((error) => {
                     console.error("Erro ao buscar os dados:", error);
@@ -51,6 +54,7 @@ export default function GenericRegister({
                 });
         }
     }, [id, endpoint, reset]);
+
 
     const handleDelete = async (e) => {
         e.preventDefault()
@@ -72,7 +76,7 @@ export default function GenericRegister({
     const handleCepBlur = async (e) => {
         const cep = e.target.value.replace(/\D/g, '');
 
-        if (cep.length !== 8) {
+        if (cep.length !== 8 || !cep) {
             setCepError("CEP inválido. Deve conter 8 dígitos.");
             setValue("cidade", "");
             setValue("bairro", "");
