@@ -5,11 +5,11 @@ export default function CadAcompanhante() {
     const registerFields = [
         {
             name: "id",
-            label: "Id",
-            type: "number",
-            placeholder: "Identificador do pacinete",
-            required: false,
-            disabled:true
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "10%",
         },
         {
             name: "nome",
@@ -17,6 +17,7 @@ export default function CadAcompanhante() {
             type: "text",
             placeholder: "Digite o nome do acompanhante",
             required: true,
+            width: "55%",
         },
         {
             name: "grauParentesco",
@@ -24,6 +25,7 @@ export default function CadAcompanhante() {
             type: "text",
             placeholder: "Digite o grau de parentesco",
             required: true,
+            width: "30%",
         },
         {
             name: "cpf",
@@ -31,6 +33,7 @@ export default function CadAcompanhante() {
             type: "text",
             placeholder: "Digite o CPF do acompanhante",
             required: true,
+            width: "55%",
         },
         {
             name: "fone",
@@ -38,6 +41,7 @@ export default function CadAcompanhante() {
             type: "text",
             placeholder: "Digite o telefone do acompanhante",
             required: true,
+            width: "41.5%",
         },
         {
             name: "email",
@@ -45,6 +49,7 @@ export default function CadAcompanhante() {
             type: "email",
             placeholder: "Digite o email do acompanhante",
             required: true,
+            width: "65%",
         },
         {
             name: "status",
@@ -52,6 +57,7 @@ export default function CadAcompanhante() {
             type: "text",
             placeholder: "Digite o status do acompanhante",
             required: true,
+            width: "31.5%",
         },
     ];
 

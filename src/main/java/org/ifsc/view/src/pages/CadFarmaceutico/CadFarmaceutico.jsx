@@ -4,11 +4,20 @@ import GenericRegister from "../../components/GenericRegister/GenericRegister.js
 export default function CadFarmaceutico() {
     const registerFields = [
         {
+            name: "id",
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "10%",
+        },
+        {
             name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do farmacêutico",
             required: true,
+            width: "55%",
         },
         {
             name: "nomeSocial",
@@ -16,6 +25,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o nome social do farmacêutico",
             required: false,
+            width: "30%",
         },
         {
             name: "login",
@@ -23,6 +33,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o login do farmacêutico",
             required: true,
+            width: "35%",
         },
         {
             name: "senha",
@@ -30,6 +41,7 @@ export default function CadFarmaceutico() {
             type: "password",
             placeholder: "Digite a senha",
             required: true,
+            width: "30%",
         },
         {
             name: "cfr",
@@ -37,6 +49,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o CFR",
             required: true,
+            width: "30%",
         },
         {
             name: "cpfCnpj",
@@ -44,6 +57,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o CPF ou CNPJ",
             required: true,
+            width: "40%",
         },
         {
             name: "rgInscricaoEstadual",
@@ -51,6 +65,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o RG ou Inscrição Estadual",
             required: true,
+            width: "30%",
         },
         {
             name: "fone1",
@@ -58,6 +73,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o telefone",
             required: true,
+            width: "25%",
         },
         {
             name: "fone2",
@@ -65,6 +81,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o celular",
             required: false,
+            width: "30%",
         },
         {
             name: "email",
@@ -72,6 +89,7 @@ export default function CadFarmaceutico() {
             type: "email",
             placeholder: "Digite o email",
             required: true,
+            width: "35%",
         },
         {
             name: "cep",
@@ -79,6 +97,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o CEP",
             required: true,
+            width: "30%",
         },
         {
             name: "cidade",
@@ -86,6 +105,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite a cidade",
             required: true,
+            width: "35%",
         },
         {
             name: "bairro",
@@ -93,6 +113,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
+            width: "30%",
         },
         {
             name: "logradouro",
@@ -100,6 +121,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o logradouro",
             required: true,
+            width: "30%",
         },
         {
             name: "complemento",
@@ -107,6 +129,7 @@ export default function CadFarmaceutico() {
             type: "text",
             placeholder: "Digite o complemento",
             required: false,
+            width: "98.5%",
         },
     ];
 
