@@ -5,11 +5,20 @@ import GenericRegister from "../../components/GenericRegister/GenericRegister.js
 export default function CadMedico() {
     const registerFields = [
         {
+            name: "id",
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "10%",
+        },
+        {
             name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do médico",
             required: true,
+            width: "55%",
         },
         {
             name: "nomeSocial",
@@ -17,6 +26,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o nome social do médico",
             required: false,
+            width: "30%",
         },
         {
             name: "login",
@@ -24,6 +34,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o login do médico",
             required: true,
+            width: "35%",
         },
         {
             name: "senha",
@@ -31,6 +42,7 @@ export default function CadMedico() {
             type: "password",
             placeholder: "Digite a senha",
             required: true,
+            width: "30%",
         },
         {
             name: "crm",
@@ -38,13 +50,15 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o CRM do médico",
             required: true,
+            width: "30%",
         },
         {
             name: "cpfCnpj",
             label: "CPF/CNPJ",
             type: "text",
-            placeholder: "Digite o CPF ou CNPJ do médico",
+            placeholder: "Digite o CPF",
             required: true,
+            width: "40%",
         },
         {
             name: "rgInscricaoEstadual",
@@ -52,6 +66,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o RG ou Inscrição Estadual do médico",
             required: true,
+            width: "30%",
         },
         {
             name: "fone1",
@@ -59,6 +74,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o telefone do médico",
             required: true,
+            width: "25%",
         },
         {
             name: "fone2",
@@ -66,6 +82,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o celular do médico",
             required: false,
+            width: "30%",
         },
         {
             name: "email",
@@ -73,6 +90,7 @@ export default function CadMedico() {
             type: "email",
             placeholder: "Digite o email do médico",
             required: true,
+            width: "35%",
         },
         {
             name: "cep",
@@ -80,6 +98,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o CEP",
             required: true,
+            width: "30%",
         },
         {
             name: "cidade",
@@ -87,6 +106,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite a cidade",
             required: true,
+            width: "35%",
         },
         {
             name: "bairro",
@@ -94,6 +114,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
+            width: "30%",
         },
         {
             name: "logradouro",
@@ -101,6 +122,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o logradouro",
             required: true,
+            width: "30%",
         },
         {
             name: "complemento",
@@ -108,6 +130,7 @@ export default function CadMedico() {
             type: "text",
             placeholder: "Digite o complemento",
             required: false,
+            width: "98.5%",
         },
     ];
 
