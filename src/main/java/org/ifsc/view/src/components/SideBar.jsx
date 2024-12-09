@@ -1,7 +1,19 @@
 // src/components/SideBar.jsx
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHome, FaUserPlus, FaBars, FaUserMd, FaUserNurse, FaUserTie, FaUserSecret, FaUserFriends, FaAngleDown, FaAngleUp } from "react-icons/fa";
+import {
+    FaHome,
+    FaUserPlus,
+    FaBars,
+    FaUserMd,
+    FaUserNurse,
+    FaUserTie,
+    FaUserSecret,
+    FaUserFriends,
+    FaAngleDown,
+    FaAngleUp,
+    FaUserNinja
+} from "react-icons/fa";
 
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(true);
@@ -28,6 +40,7 @@ export default function SideBar() {
                 { name: "Enfermeiro", path: "/PesEnfermeiro", icon: <FaUserNurse /> },
                 { name: "Farmacêutico", path: "/PesFarmaceutico", icon: <FaUserTie /> },
                 { name: "Usuário do Sistema", path: "/PesUsuario", icon: <FaUserSecret /> },
+                { name: "Fornecedor", path: "PesFornecedor", icon: <FaUserNinja />}
             ],
         },
     ];

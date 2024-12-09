@@ -17,6 +17,7 @@ import SideBar from "./components/SideBar.jsx";
 import CadPaciente from "./pages/CadPaciente/CadPaciente.jsx";
 import {ToastContainer, Bounce} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import PesFornecedor from "./pages/PesFornecedor/PesFornecedor.jsx";
 
 export default function App() {
     return (
@@ -58,7 +59,7 @@ export default function App() {
                         <Route path="/CadMedico/:id" element={<CadMedico />} />
                         <Route path="/CadUsuario" element={<CadUsuario />} />
                         <Route path="/CadUsuario/:id" element={<CadUsuario />} />
-                        {/* Adicione mais rotas conforme necessário */}
+                        <Route path={"/PesFornecedor"} element={<PesFornecedor />} />
                     </Routes>
 
                 </div>

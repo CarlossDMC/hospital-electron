@@ -141,6 +141,14 @@ export default function CadPaciente() {
             required: false,
             width: "30%",
         },
+        {
+            name: "dataNascimento",
+            label: "Data de Nascimento",
+            type: "date",
+            placeholder: "Digite o data de nascimento",
+            required: false,
+            width: "35%",
+        }
     ];
 
     const endpoint = "http://localhost:8000/paciente";
