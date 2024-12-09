@@ -53,9 +53,10 @@ export default function SearchForm({ fields, onSearch, loading, registerPath }) 
                                 <select
                                     name={field.name}
                                     value={formData[field.name] || ""}
-                                    onChange={handleChange}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                    onInput={handleSubmit}
                                 >
                                     <option value="">{field.placeholder || "Selecione"}</option>
                                     {field.options.map((option) => (
