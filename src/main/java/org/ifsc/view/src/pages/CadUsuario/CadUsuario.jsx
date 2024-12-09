@@ -4,11 +4,20 @@ import GenericRegister from "../../components/GenericRegister/GenericRegister.js
 export default function CadUsuario() {
     const registerFields = [
         {
+            name: "id",
+            label: "ID",
+            type: "text",
+            value: "123",
+            disabled: true,
+            width: "10%",
+        },
+        {
             name: "nome",
             label: "Nome",
             type: "text",
             placeholder: "Digite o nome do usuário",
             required: true,
+            width: "55%",
         },
         {
             name: "nomeSocial",
@@ -16,6 +25,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o nome social do usuário",
             required: false,
+            width: "30%",
         },
         {
             name: "login",
@@ -23,6 +33,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o login do usuário",
             required: true,
+            width: "35%",
         },
         {
             name: "senha",
@@ -30,6 +41,7 @@ export default function CadUsuario() {
             type: "password",
             placeholder: "Digite a senha do usuário",
             required: true,
+            width: "30%",
         },
         {
             name: "cpfCnpj",
@@ -37,6 +49,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o CPF ou CNPJ do usuário",
             required: true,
+            width: "40%",
         },
         {
             name: "rgInscricaoEstadual",
@@ -44,6 +57,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o RG ou Inscrição Estadual do usuário",
             required: true,
+            width: "30%",
         },
         {
             name: "fone1",
@@ -51,6 +65,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o telefone do usuário",
             required: true,
+            width: "25%",
         },
         {
             name: "fone2",
@@ -58,6 +73,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o celular do usuário (opcional)",
             required: false,
+            width: "30%",
         },
         {
             name: "email",
@@ -65,6 +81,7 @@ export default function CadUsuario() {
             type: "email",
             placeholder: "Digite o email do usuário",
             required: true,
+            width: "35%",
         },
         {
             name: "cep",
@@ -72,6 +89,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o CEP",
             required: true,
+            width: "30%",
         },
         {
             name: "cidade",
@@ -79,6 +97,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite a cidade",
             required: true,
+            width: "35%",
         },
         {
             name: "bairro",
@@ -86,6 +105,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
+            width: "30%",
         },
         {
             name: "logradouro",
@@ -93,6 +113,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o logradouro",
             required: true,
+            width: "30%",
         },
         {
             name: "complemento",
@@ -100,6 +121,7 @@ export default function CadUsuario() {
             type: "text",
             placeholder: "Digite o complemento",
             required: false,
+            width: "98.5%",
         },
     ];
 
