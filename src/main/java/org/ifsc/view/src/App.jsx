@@ -18,6 +18,7 @@ import CadPaciente from "./pages/CadPaciente/CadPaciente.jsx";
 import {ToastContainer, Bounce} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PesFornecedor from "./pages/PesFornecedor/PesFornecedor.jsx";
+import CadFornecedor from "./pages/CadFornecedor/CadFornecedor.jsx";
 
 export default function App() {
     return (
@@ -60,6 +61,7 @@ export default function App() {
                         <Route path="/CadUsuario" element={<CadUsuario />} />
                         <Route path="/CadUsuario/:id" element={<CadUsuario />} />
                         <Route path={"/PesFornecedor"} element={<PesFornecedor />} />
+                        <Route path={"/CadFornecedor"} element={<CadFornecedor />} />
                     </Routes>
 
                 </div>
