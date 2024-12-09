@@ -30,11 +30,11 @@ export default function CadFornecedor() {
             width: "60%",
         },
         {
-            name: "dataCadastro",
-            label: "Data de Cadastro",
-            type: "date",
-            placeholder: "Selecione a data de cadastro",
-            required: false,
+            name: "fone1",
+            label: "Telefone Fixo",
+            type: "text",
+            placeholder: "Digite o telefone fixo",
+            required: true,
             width: "38%",
         },
         {
@@ -46,20 +46,12 @@ export default function CadFornecedor() {
             width: "60%",
         },
         {
-            name: "fone1",
-            label: "Telefone Fixo",
-            type: "text",
-            placeholder: "Digite o telefone fixo",
-            required: true,
-            width: "25%",
-        },
-        {
             name: "fone2",
             label: "Telefone Celular",
             type: "text",
             placeholder: "Digite o telefone celular",
             required: false,
-            width: "30%",
+            width: "38%",
         },
         {
             name: "email",
@@ -83,7 +75,7 @@ export default function CadFornecedor() {
             type: "text",
             placeholder: "Digite o RG ou inscrição estadual",
             required: false,
-            width: "35%",
+            width: "31%",
         },
         {
             name: "cep",
@@ -107,7 +99,7 @@ export default function CadFornecedor() {
             type: "text",
             placeholder: "Digite o bairro",
             required: true,
-            width: "30%",
+            width: "36%",
         },
         {
             name: "logradouro",
