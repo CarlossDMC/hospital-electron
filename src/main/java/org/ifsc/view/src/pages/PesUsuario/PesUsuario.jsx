@@ -3,8 +3,7 @@ import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
 export default function PesUsuario() {
     const searchFields = [
-        { name: "username", label: "Usuário", type: "text", placeholder: "Digite o nome de usuário" },
-        { name: "role", label: "Função", type: "text", placeholder: "Digite a função" },
+        { name: "nome", label: "Usuário", type: "text", placeholder: "Digite o nome de usuário" },
         { name: "email", label: "Email", type: "email", placeholder: "Digite o email" },
     ];
 
