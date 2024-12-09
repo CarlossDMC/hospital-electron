@@ -3,16 +3,16 @@ import GenericSearch from "../../components/GenericSearch/GenericSearch.jsx";
 
 export default function PesFarmaceutico() {
     const searchFields = [
-        { name: "name", label: "Nome", type: "text", placeholder: "Digite o nome do farmacêutico" },
-        { name: "licenseNumber", label: "Número da Licença", type: "text", placeholder: "Digite o número da licença" },
-        { name: "pharmacy", label: "Farmácia", type: "text", placeholder: "Digite a farmácia" },
+        { name: "nome", label: "Nome", type: "text", placeholder: "Digite o nome do farmacêutico" },
+        { name: "cfr", label: "Número da Licença", type: "text", placeholder: "Digite o número da licença" },
     ];
 
     const tableColumns = [
         { header: "ID", accessor: "id" },
-        { header: "Nome", accessor: "name" },
-        { header: "Número da Licença", accessor: "licenseNumber" },
-        { header: "Farmácia", accessor: "pharmacy" },
+        { header: "Nome", accessor: "nome" },
+        { header: "Número da Licença", accessor: "cfr" },
+        { header: "Telefone", accessor: "fone" },
+        { header: "Email", accessor: "email" },
     ];
 
     const endpoint = "http://localhost:8000/farmaceutico";
@@ -24,6 +24,7 @@ export default function PesFarmaceutico() {
             <GenericSearch
                 fields={searchFields}
                 endpoint={endpoint}
+                idAcess={"id"}
                 columns={tableColumns}
                 registerPath={registerPath}
             />

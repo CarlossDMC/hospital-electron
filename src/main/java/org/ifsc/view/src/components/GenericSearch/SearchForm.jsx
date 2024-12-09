@@ -53,6 +53,7 @@ export default function SearchForm({ fields, onSearch, loading, registerPath }) 
                                 <select
                                     name={field.name}
                                     value={formData[field.name] || ""}
+                                    onClick={handleSubmit}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}

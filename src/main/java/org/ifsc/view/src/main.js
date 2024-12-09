@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
 const { session } = require('electron');
+const iconPath = path.join(app.getAppPath(), 'assets', 'icone.ico');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -12,14 +13,16 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
+    icon: iconPath,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
-    autoHideMenuBar: true,
+    autoHideMenuBar: true, // Esconde a barra de menu, mas mantém os botões de controle
   });
-
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  mainWindow.maximize();
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

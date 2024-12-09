@@ -2,7 +2,7 @@ package org.ifsc.controller;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.ifsc.model.Usuario;
+import org.ifsc.model.Fornecedor;
 import org.ifsc.utils.JsonUtils;
 import org.ifsc.utils.Utils;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public class UsuarioHandler implements HttpHandler {
+public class FornecedorHandler implements HttpHandler {
 
     private final Utils utils = new Utils();
 
@@ -31,29 +31,36 @@ public class UsuarioHandler implements HttpHandler {
                     if (id == null) {
                         response = JsonUtils.toJson(getAll(headers));
                     } else {
-                        Usuario usuario = Usuario.findById(id);
-                        if (usuario != null) {
-                            response = JsonUtils.toJson(usuario);
+                        Fornecedor fornecedor = Fornecedor.findById(id);
+                        if (fornecedor != null) {
+                            response = JsonUtils.toJson(fornecedor);
                         } else {
-                            response = "Usuário não encontrado.";
+                            response = "Fornecedor não encontrado.";
                             statusCode = 404;
                         }
                     }
                     break;
                 case "POST":
-                    Usuario newUsuario = insertUsuario(body);
-                    response = JsonUtils.toJson(newUsuario);
+                    Fornecedor newFornecedor = insertFornecedor(body);
+                    response = JsonUtils.toJson(newFornecedor);
                     statusCode = 201;
                     break;
                 case "PUT":
+                    if (id != null) {
+                        Fornecedor updatedFornecedor = updateFornecedor(body, id);
+                        response = JsonUtils.toJson(updatedFornecedor);
+                    } else {
+                        statusCode = 400;
+                        response = "Para atualizar, é necessário passar o ID como parâmetro.";
+                    }
                     break;
                 case "DELETE":
                     if (id != null) {
-                        boolean deleted = Usuario.deleteById(id);
+                        boolean deleted = Fornecedor.deleteById(id);
                         if (deleted) {
-                            response = "Usuário excluído com sucesso.";
+                            response = "Fornecedor excluído com sucesso.";
                         } else {
-                            response = "Erro ao excluir usuário.";
+                            response = "Erro ao excluir fornecedor.";
                             statusCode = 400;
                         }
                     } else {
@@ -77,16 +84,31 @@ public class UsuarioHandler implements HttpHandler {
         }
     }
 
-    private Usuario insertUsuario(String body) {
+    private Fornecedor insertFornecedor(String body) {
         try {
-            Usuario usuario = JsonUtils.fromJson(body, Usuario.class);
-            return usuario.save();
+            Fornecedor fornecedor = JsonUtils.fromJson(body, Fornecedor.class);
+            return fornecedor.save();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao inserir usuário: " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao inserir fornecedor: " + e.getMessage(), e);
         }
     }
 
-    private List<Usuario> getAll(Map<String, String> headers) throws SQLException {
-        return Usuario.findAll(headers);
+    private Fornecedor updateFornecedor(String body, Long id) {
+        try {
+            Fornecedor existingFornecedor = Fornecedor.findById(id);
+            if (existingFornecedor != null) {
+                Fornecedor updatedFornecedor = JsonUtils.fromJson(body, Fornecedor.class);
+                updatedFornecedor.setId(id);
+                return updatedFornecedor.save();
+            } else {
+                throw new RuntimeException("Fornecedor não encontrado para atualização.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao atualizar fornecedor: " + e.getMessage(), e);
+        }
+    }
+
+    private List<Fornecedor> getAll(Map<String, String> headers) throws SQLException {
+        return Fornecedor.findAll(headers);
     }
 }

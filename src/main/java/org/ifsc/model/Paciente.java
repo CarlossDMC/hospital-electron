@@ -8,6 +8,7 @@ import org.ifsc.utils.Utils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +21,17 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 	private String tipoSanguineo;
 	private String sexo;
 	private String nomeSocial;
+	private LocalDate dataNascimento;
 
 	public Paciente(Long id, String nome, String fone1, String fone2, String email, String cpfCnpj,
 					String rgInscricaoEstadual, LocalDateTime dataCadastro, String cep, String cidade, String bairro,
-					String logradouro, String complemento, String tipoSanguineo, String sexo, String nomeSocial) {
+					String logradouro, String complemento, String tipoSanguineo, String sexo, String nomeSocial, LocalDate dataNascimento) {
 		super(id, nome, fone1, fone2, email, cpfCnpj, rgInscricaoEstadual, dataCadastro, cep, cidade, bairro,
 				logradouro, complemento);
 		this.tipoSanguineo = tipoSanguineo;
 		this.sexo = sexo;
 		this.nomeSocial = nomeSocial;
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Paciente() {
@@ -59,6 +62,14 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		this.nomeSocial = nomeSocial;
 	}
 
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
 	@Override
 	public synchronized Paciente save() {
 		String query;
@@ -67,8 +78,8 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 		if (this.getId() == null) {
 			query = "INSERT INTO paciente " +
 					"(nome, fone1, fone2, email, cpf_Cnpj, rg_Inscricao_Estadual, data_Cadastro, " +
-					"cep, cidade, bairro, logradouro, complemento, tipo_Sanguineo, sexo, nome_social) " +
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					"cep, cidade, bairro, logradouro, complemento, tipo_Sanguineo, sexo, nome_social, data_nascimento) " +
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			params.add(this.getNome());
 			params.add(this.getFone1());
 			params.add(this.getFone2());
@@ -84,10 +95,11 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 			params.add(this.getTipoSanguineo());
 			params.add(this.getSexo());
 			params.add(this.getNomeSocial());
+			params.add(this.getDataNascimento());
 		} else {
 			query = "UPDATE paciente SET nome = ?, fone1 = ?, fone2 = ?, email = ?, " +
 					"cpf_Cnpj = ?, rg_Inscricao_Estadual = ?, cep = ?, cidade = ?, " +
-					"bairro = ?, logradouro = ?, complemento = ?, tipo_Sanguineo = ?, sexo = ?, nome_social = ? " +
+					"bairro = ?, logradouro = ?, complemento = ?, tipo_Sanguineo = ?, sexo = ?, nome_social = ?, data_nascimento = ? " +
 					"WHERE id = ?";
 			params.add(this.getNome());
 			params.add(this.getFone1());
@@ -103,6 +115,7 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 			params.add(this.getTipoSanguineo());
 			params.add(this.getSexo());
 			params.add(this.getNomeSocial());
+			params.add(this.getDataNascimento());
 			params.add(this.getId());
 		}
 
@@ -152,7 +165,8 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 					rs.getString("complemento"),
 					rs.getString("tipo_Sanguineo"),
 					rs.getString("sexo"),
-					rs.getString("nome_Social"));
+					rs.getString("nome_Social"),
+					rs.getDate("data_nascimento") == null ? null : rs.getDate("data_nascimento").toLocalDate());
 
 			resultList.add(paciente);
 		}
@@ -195,8 +209,8 @@ public class Paciente extends Pessoa implements InterfaceDAO<Paciente> {
 						rs.getString("complemento"),
 						rs.getString("tipo_Sanguineo"),
 						rs.getString("sexo"),
-						rs.getString("nome_social")
-				);
+						rs.getString("nome_social"),
+						rs.getDate("data_nascimento") == null ? null : rs.getDate("data_nascimento").toLocalDate());
 			}
 		} catch (SQLException e) {
 			System.err.println("Erro ao buscar paciente pelo ID: " + e.getMessage());

@@ -1,8 +1,12 @@
 package org.ifsc.utils;
 
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import java.text.SimpleDateFormat;
 
 public class JsonUtils {
 
@@ -10,6 +14,9 @@ public class JsonUtils {
 
     static {
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public static <T> T fromJson(String json, Class<T> clazz) {

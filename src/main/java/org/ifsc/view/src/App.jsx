@@ -62,6 +62,7 @@ export default function App() {
                         <Route path="/CadUsuario/:id" element={<CadUsuario />} />
                         <Route path={"/PesFornecedor"} element={<PesFornecedor />} />
                         <Route path={"/CadFornecedor"} element={<CadFornecedor />} />
+                        <Route path={"/CadFornecedor/:id"} element={<CadFornecedor />} />
                     </Routes>
 
                 </div>

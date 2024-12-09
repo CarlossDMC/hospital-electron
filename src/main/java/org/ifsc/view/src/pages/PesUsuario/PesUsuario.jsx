@@ -10,9 +10,9 @@ export default function PesUsuario() {
 
     const tableColumns = [
         { header: "ID", accessor: "id" },
-        { header: "Usuário", accessor: "username" },
-        { header: "Função", accessor: "role" },
+        { header: "Usuário", accessor: "nome" },
         { header: "Email", accessor: "email" },
+        { header: "Fone", accessor: "fone1" },
     ];
 
     const endpoint = "http://localhost:8000/usuario";
@@ -22,6 +22,7 @@ export default function PesUsuario() {
         <div className="container mx-auto">
             <h1 className="text-3xl font-bold mb-6">Pesquisar Usuários do Sistema</h1>
             <GenericSearch
+                idAcess={"id"}
                 fields={searchFields}
                 endpoint={endpoint}
                 columns={tableColumns}

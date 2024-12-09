@@ -2,10 +2,7 @@ package org.ifsc;
 
 import com.sun.net.httpserver.HttpServer;
 import org.ifsc.DB.DB;
-import org.ifsc.controller.AcompanhanteHandler;
-import org.ifsc.controller.EnfermeiroHandler;
-import org.ifsc.controller.MedicoHandler;
-import org.ifsc.controller.PacienteHandler;
+import org.ifsc.controller.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,6 +14,9 @@ public class Main {
         MedicoHandler medicoHandler = new MedicoHandler();
         AcompanhanteHandler acompanhanteHandler = new AcompanhanteHandler();
         EnfermeiroHandler enfermeiroHandler = new EnfermeiroHandler();
+        FarmaceuticoHandler farmaceuticoHandler = new FarmaceuticoHandler();
+        UsuarioHandler usuarioHandler = new UsuarioHandler();
+        FornecedorHandler fornecedorHandler = new FornecedorHandler();
 
         server.setExecutor(null);
         server.start();
@@ -25,6 +25,9 @@ public class Main {
         server.createContext("/medico", medicoHandler);
         server.createContext("/acompanhante", acompanhanteHandler);
         server.createContext("/enfermeiro", enfermeiroHandler);
+        server.createContext("/farmaceutico", farmaceuticoHandler);
+        server.createContext("/usuario", usuarioHandler);
+        server.createContext("/fornecedor", fornecedorHandler);
 
         System.out.println("Servidor rodando na porta 8000!");
         try {
