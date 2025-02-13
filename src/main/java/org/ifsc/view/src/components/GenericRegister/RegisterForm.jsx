@@ -10,7 +10,6 @@ export default function RegisterForm({ fields, onSubmit, loading }) {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        // Limpa o erro do campo ao alterar o valor
         setErrors((prev) => ({ ...prev, [name]: null }));
     };
 
@@ -20,7 +19,6 @@ export default function RegisterForm({ fields, onSubmit, loading }) {
             if (field.required && !formData[field.name]) {
                 newErrors[field.name] = `${field.label} é obrigatório.`;
             }
-            // Adicione outras validações conforme necessário
         });
         return newErrors;
     };
@@ -36,7 +34,7 @@ export default function RegisterForm({ fields, onSubmit, loading }) {
     };
 
     const handleBack = () => {
-        navigate(-1); // Retorna à página anterior
+        navigate(-1);
     };
 
     return (

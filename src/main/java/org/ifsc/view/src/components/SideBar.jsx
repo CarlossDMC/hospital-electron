@@ -1,4 +1,3 @@
-// src/components/SideBar.jsx
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -12,20 +11,30 @@ import {
     FaUserFriends,
     FaAngleDown,
     FaAngleUp,
-    FaUserNinja
+    FaUserNinja,
+    FaBed,
+    FaFlask,
+    FaMicroscope,
+    FaPills
 } from "react-icons/fa";
+import { FaHouse } from "react-icons/fa6";
+import { LiaHospital } from "react-icons/lia";
+import { MdMeetingRoom } from "react-icons/md";
 
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(true);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState({});
     const location = useLocation();
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
+    const toggleDropdown = (menuName) => {
+        setDropdownOpen((prev) => ({
+            ...prev,
+            [menuName]: !prev[menuName]
+        }));
     };
 
     const menuItems = [
@@ -40,9 +49,26 @@ export default function SideBar() {
                 { name: "Enfermeiro", path: "/PesEnfermeiro", icon: <FaUserNurse /> },
                 { name: "Farmacêutico", path: "/PesFarmaceutico", icon: <FaUserTie /> },
                 { name: "Usuário do Sistema", path: "/PesUsuario", icon: <FaUserSecret /> },
-                { name: "Fornecedor", path: "PesFornecedor", icon: <FaUserNinja />}
+                { name: "Fornecedor", path: "/PesFornecedor", icon: <FaUserNinja /> }
             ],
         },
+        {
+            name: "Alas",
+            icon: <LiaHospital />,
+            subItems: [
+                { name: "Ala", path: "/PesAla", icon: <FaHouse /> },
+                { name: "Quarto", path: "/PesQuarto", icon: <MdMeetingRoom /> },
+                { name: "Leito", path: "/PesLeito", icon: <FaBed /> }
+            ]
+        },
+        {
+            name: "Laboratório & Medicamentos",
+            icon: <FaFlask />,
+            subItems: [
+                { name: "Laboratórios", path: "/PesLaboratorio", icon: <FaMicroscope /> },
+                { name: "Medicamentos", path: "/PesMedicamentos", icon: <FaPills /> }
+            ],
+        }
     ];
 
     return (
@@ -59,11 +85,11 @@ export default function SideBar() {
             <nav className="flex-1 overflow-y-auto">
                 {menuItems.map((item) => {
                     if (item.subItems) {
-                        const isActive = dropdownOpen;
+                        const isActive = dropdownOpen[item.name] || false;
                         return (
                             <div key={item.name}>
                                 <button
-                                    onClick={toggleDropdown}
+                                    onClick={() => toggleDropdown(item.name)}
                                     className={`flex items-center w-full p-4 hover:bg-green-700 transition-colors focus:outline-none ${isActive ? "bg-green-700" : ""}`}
                                 >
                                     <span className="text-xl">{item.icon}</span>

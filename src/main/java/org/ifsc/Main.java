@@ -17,6 +17,8 @@ public class Main {
         FarmaceuticoHandler farmaceuticoHandler = new FarmaceuticoHandler();
         UsuarioHandler usuarioHandler = new UsuarioHandler();
         FornecedorHandler fornecedorHandler = new FornecedorHandler();
+        AlaHandler alaHandler = new AlaHandler();
+        QuartoHandler quartoHandler = new QuartoHandler();
 
         server.setExecutor(null);
         server.start();
@@ -28,6 +30,8 @@ public class Main {
         server.createContext("/farmaceutico", farmaceuticoHandler);
         server.createContext("/usuario", usuarioHandler);
         server.createContext("/fornecedor", fornecedorHandler);
+        server.createContext("/ala", alaHandler);
+        server.createContext("/quarto", quartoHandler);
 
         System.out.println("Servidor rodando na porta 8000!");
         try {

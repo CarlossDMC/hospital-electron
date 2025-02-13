@@ -19,6 +19,10 @@ import {ToastContainer, Bounce} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PesFornecedor from "./pages/PesFornecedor/PesFornecedor.jsx";
 import CadFornecedor from "./pages/CadFornecedor/CadFornecedor.jsx";
+import CadAla from "./pages/CadAla/CadAla.jsx";
+import CadQuarto from "./pages/CadQuarto/CadQuarto.jsx";
+import PesAla from "./pages/PesAla/PesAla.jsx";
+import PesQuarto from "./pages/PesQuarto/PesQuarto.jsx";
 
 export default function App() {
     return (
@@ -63,6 +67,10 @@ export default function App() {
                         <Route path={"/PesFornecedor"} element={<PesFornecedor />} />
                         <Route path={"/CadFornecedor"} element={<CadFornecedor />} />
                         <Route path={"/CadFornecedor/:id"} element={<CadFornecedor />} />
+                        <Route path={"/CadAla"} element={<CadAla />} />
+                        <Route path={"/PesAla"} element={<PesAla />} />
+                        <Route path={"/CadQuarto"} element={<CadQuarto />} />
+                        <Route path={"/PesQuarto"} element={<PesQuarto />} />
                     </Routes>
 
                 </div>
