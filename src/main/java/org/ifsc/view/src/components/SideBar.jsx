@@ -58,17 +58,17 @@ export default function SideBar() {
             subItems: [
                 { name: "Ala", path: "/PesAla", icon: <FaHouse /> },
                 { name: "Quarto", path: "/PesQuarto", icon: <MdMeetingRoom /> },
-                { name: "Leito", path: "/PesLeito", icon: <FaBed /> }
+                // { name: "Leito", path: "/PesLeito", icon: <FaBed /> }
             ]
         },
-        {
-            name: "Laboratório & Medicamentos",
-            icon: <FaFlask />,
-            subItems: [
-                { name: "Laboratórios", path: "/PesLaboratorio", icon: <FaMicroscope /> },
-                { name: "Medicamentos", path: "/PesMedicamentos", icon: <FaPills /> }
-            ],
-        }
+        // {
+        //     name: "Laboratório & Medicamentos",
+        //     icon: <FaFlask />,
+        //     subItems: [
+        //         { name: "Laboratórios", path: "/PesLaboratorio", icon: <FaMicroscope /> },
+        //         { name: "Medicamentos", path: "/PesMedicamentos", icon: <FaPills /> }
+        //     ],
+        // }
     ];
 
     return (
