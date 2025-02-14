@@ -1,18 +1,23 @@
 package org.ifsc.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.ifsc.model.Quarto;
+import org.ifsc.service.QuartoService;
 import org.ifsc.utils.JsonUtils;
 import org.ifsc.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class QuartoHandler implements HttpHandler {
     private final Utils utils = new Utils();
+    private final QuartoService quartoService = new QuartoService();
+
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -28,7 +33,7 @@ public class QuartoHandler implements HttpHandler {
             switch (method) {
                 case "GET":
                     if (id == null) {
-                        response = JsonUtils.toJson(getAll());
+                        response = String.valueOf(getAll());
                     } else {
                         Quarto quarto = Quarto.findById(id);
                         if (quarto != null) {
@@ -107,7 +112,19 @@ public class QuartoHandler implements HttpHandler {
         }
     }
 
-    private List<Quarto> getAll() throws SQLException {
-        return Quarto.findAll();
+    private List<String> getAll() throws SQLException {
+        java.util.List<Quarto> quarto = Quarto.findAll();
+
+        List<String> mappedResponse = quarto.stream().map(e -> {
+            try {
+                return this.quartoService.mappedQuarto(e);
+            } catch (SQLException | JsonProcessingException ex) {
+                throw new RuntimeException(ex);
+            }
+        }).toList();
+
+        return mappedResponse;
     }
+
+
 }
