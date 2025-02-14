@@ -25,8 +25,6 @@ public class QuartoService {
         response.put("alaStatus", ala.getStatus());
         String json = objectMapper.writeValueAsString(response);
 
-        System.out.println("MEU OVO ESQUERDO " + json);
-
         return json;
     }
 

@@ -1,10 +1,8 @@
 package org.ifsc.controller;
 
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.ifsc.model.Paciente;
-import org.ifsc.service.PacienteService;
 import org.ifsc.utils.JsonUtils;
 import org.ifsc.utils.Utils;
 
