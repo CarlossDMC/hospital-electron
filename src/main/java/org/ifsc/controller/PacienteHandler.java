@@ -14,7 +14,6 @@ import java.util.Map;
 
 public class PacienteHandler implements HttpHandler {
     private final Utils utils = new Utils();
-    private final PacienteService pacienteService = new PacienteService();
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
