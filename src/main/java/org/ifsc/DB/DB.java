@@ -1,6 +1,10 @@
 package org.ifsc.DB;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DB {
 
@@ -15,7 +19,7 @@ public class DB {
 
     public static void openConnection() {
         try {
-            String url = "jdbc:mysql://100.104.103.66:3311/hospital_electron?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+            String url = "jdbc:mysql://100.104.103.66:3306/hospital_electron?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
             String user = "goat";
             String password = "Refacty_db5498!#";
 
