@@ -15,9 +15,9 @@ public class DB {
 
     public static void openConnection() {
         try {
-            String url = "jdbc:mysql://100.124.136.16:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
-            String user = "root";
-            String password = "bru!@#";
+            String url = "jdbc:mysql://100.104.103.66:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+            String user = "goat";
+            String password = "Refacty_db5498!#";
 
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Conexão estabelecida com sucesso!");
