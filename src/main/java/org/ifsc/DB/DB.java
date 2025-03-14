@@ -15,7 +15,7 @@ public class DB {
 
     public static void openConnection() {
         try {
-            String url = "jdbc:mysql://100.104.103.66:3311/hospital?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+            String url = "jdbc:mysql://100.104.103.66:3311/hospital_electron?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
             String user = "goat";
             String password = "Refacty_db5498!#";
 
